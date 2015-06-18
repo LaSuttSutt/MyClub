@@ -1,4 +1,4 @@
-CREATE TABLE `SOCCER`.`User` (
+CREATE TABLE `User` (
   `Id` CHAR(36) NOT NULL,
   `Name` VARCHAR(100) NOT NULL,
   `ShortName` VARCHAR(10) NOT NULL,
@@ -8,6 +8,6 @@ CREATE TABLE `SOCCER`.`User` (
   UNIQUE INDEX `Name_UNIQUE` (`Name` ASC),
   UNIQUE INDEX `ShortName_UNIQUE` (`ShortName` ASC));
 
-CREATE TABLE `SOCCER`.`UserRoles` (
+CREATE TABLE `UserRoles` (
   `FkUserId` CHAR(36) NOT NULL,
   `Role` INT(11) NOT NULL);

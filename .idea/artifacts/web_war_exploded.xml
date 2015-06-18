@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="web:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/web_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="web" />
+          <element id="module-output" name="api" />
+          <element id="module-output" name="domainmodel" />
+          <element id="jpa-descriptors" facet="domainmodel/jpa/JPA" />
+          <element id="module-output" name="myclub" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: javax.ws.rs:javax.ws.rs-api:2.0.1" />
+          <element id="library" level="project" name="Maven: org.flywaydb:flyway-core:3.2.1" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="web/web/Web" />
+    </root>
+  </artifact>
+</component>

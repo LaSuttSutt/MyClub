@@ -24,12 +24,14 @@
         <processorPath useClasspath="true" />
         <module name="api" />
         <module name="domainmodel" />
+        <module name="web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api" target="1.5" />
       <module name="domainmodel" target="1.5" />
       <module name="myclub" target="1.5" />
+      <module name="web" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
