@@ -1,0 +1,13 @@
+CREATE TABLE `SOCCER`.`User` (
+  `Id` CHAR(36) NOT NULL,
+  `Name` VARCHAR(100) NOT NULL,
+  `ShortName` VARCHAR(10) NOT NULL,
+  `Email` VARCHAR(100) NULL,
+  `Password` VARCHAR(500) NOT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE INDEX `Name_UNIQUE` (`Name` ASC),
+  UNIQUE INDEX `ShortName_UNIQUE` (`ShortName` ASC));
+
+CREATE TABLE `SOCCER`.`UserRoles` (
+  `FkUserId` CHAR(36) NOT NULL,
+  `Role` INT(11) NOT NULL);

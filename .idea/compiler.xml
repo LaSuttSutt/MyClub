@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="api" />
         <module name="domainmodel" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="api" target="1.5" />
       <module name="domainmodel" target="1.5" />
       <module name="myclub" target="1.5" />
     </bytecodeTargetLevel>
