@@ -9,5 +9,6 @@ CREATE TABLE `User` (
   UNIQUE INDEX `ShortName_UNIQUE` (`ShortName` ASC));
 
 CREATE TABLE `UserRoles` (
+  `Id` CHAR(36) NOT NULL,
   `FkUserId` CHAR(36) NOT NULL,
   `Role` INT(11) NOT NULL);
