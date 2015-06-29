@@ -19,3 +19,19 @@
     from { -moz-transform: rotate(0deg);}
     to { -moz-transform: rotate(360deg);}
 }
+
+.nav-pills > li.active a {
+    background-color: #3e8f3e;
+}
+
+.nav-pills > li.active a:hover {
+    background-color: #4cae4c;
+}
+
+.nav-pills > li.active a:focus {
+    background-color: #3e8f3e;    
+}
+
+.nav-pills > li a {
+    color: darkgreen;
+}

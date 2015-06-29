@@ -48,7 +48,7 @@ public class User {
     @Override
     public String toString() {
 
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
 
         result.add("ID: " + this.getId());
         result.add("Name: " + this.getName());
@@ -56,7 +56,7 @@ public class User {
         result.add("Email: " + this.getEmail());
         result.add("PWD-Hash: " + this.getPassword());
 
-        List<String> roles = new ArrayList<String>();
+        List<String> roles = new ArrayList<>();
         for (UserRole role : this.getRoles()) {
             roles.add("[" + role.getValue() + "]" + role.name());
         }

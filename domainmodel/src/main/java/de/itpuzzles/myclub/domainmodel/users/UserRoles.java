@@ -1,8 +1,6 @@
 package de.itpuzzles.myclub.domainmodel.users;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -17,6 +15,8 @@ public class UserRoles {
     private String id;
 
     private String fkUserId;
+
+    @Enumerated(EnumType.ORDINAL)
     private User.UserRole role;
 
     //endregion
