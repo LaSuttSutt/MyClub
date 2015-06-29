@@ -21,17 +21,19 @@
 }
 
 .nav-pills > li.active a {
-    background-color: #3e8f3e;
+    /*background-color: #3e8f3e;*/
+    background-color: #c9302c;
 }
 
 .nav-pills > li.active a:hover {
-    background-color: #4cae4c;
+    /*background-color: #4cae4c;*/
+    background-color: #d43f3a;
 }
 
 .nav-pills > li.active a:focus {
-    background-color: #3e8f3e;    
+    background-color: #c9302c;
 }
 
 .nav-pills > li a {
-    color: darkgreen;
+    color: darkred;
 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Mein Verein</title>
+    <link rel="icon" type="image/png" href="../images/TUS.png">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/MyClub.css">
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../js/knockout/knockout.js"></script>
+    <script type="text/javascript" src="../scripts/Common.js"></script>
+</head>
+<body>
+<div id="MainPage" class="container">
+    <div class="row">
+        <div id="LeftColumn" class="col-md-2">
+            <div id="ClubImage" class="row" style="margin-top: 15px" align="middle">
+                <img id="imgClubLogo" src="../images/TUS.png" style="width: 75px; height: 75px">
+            </div>
+            <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
+            <div id="Navigation">
+                <h5 style="color: dimgray">Navigation</h5>
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active">
+                        <a href="#" style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px">Home</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#" style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px">Vereins-Mitglieder</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="MainPart" class="col-md-10" style="border-left: 1px solid darkgray; margin-top: 15px">
+            <div id="PageHeader">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3 style="color: #c9302c; margin-top: 5px; margin-bottom: 0">Tus Binzen 1956 e.V.</h3>
+                    </div>
+                    <div class="col-md-4" align="right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false" style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right: 5px"></span>
+                                <a style="text-decoration: none; color: #080808; padding-right: 10px">Sven Sutter</a>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" style="padding: 3px">
+                                <li>
+                                    <a href="#">Test</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
+            <div id="MainPageContent" style="border: 1px solid gray">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    registerElementForResize($('#MainPageContent')[0]);
+</script>
