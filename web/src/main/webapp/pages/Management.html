@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%">
 <head lang="en">
     <meta charset="UTF-8">
     <title>Mein Verein</title>
@@ -9,29 +9,45 @@
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript" src="../js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/knockout/knockout.js"></script>
-    <script type="text/javascript" src="../scripts/Common.js"></script>
+    <script type="text/javascript" src="../scripts/common/Common.js"></script>
+    <script type="text/javascript" src="../scripts/common/Navigation.js"></script>
 </head>
-<body>
-<div id="MainPage" class="container">
-    <div class="row">
+<body style="height: 100%">
+<div id="MainPage" class="container" style="height: 100%;">
+    <div class="row" style="height: 100%">
         <div id="LeftColumn" class="col-md-2">
             <div id="ClubImage" class="row" style="margin-top: 15px" align="middle">
                 <img id="imgClubLogo" src="../images/TUS.png" style="width: 75px; height: 75px">
             </div>
             <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
-            <div id="Navigation">
-                <h5 style="color: dimgray">Navigation</h5>
+            <div id="Navigation" class="navigation">
+                <h5>Navigation</h5>
                 <ul class="nav nav-pills nav-stacked">
                     <li role="presentation" class="active">
-                        <a href="#" style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px">Home</a>
+                        <a href="#" style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+                            <span>Home</span>
+                        </a>
                     </li>
                     <li role="presentation">
-                        <a href="#" style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px">Vereins-Mitglieder</a>
+                        <a href="#" style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+                            <span>Vereins-Mitglieder</span>
+                        </a>
+                    </li>
+                </ul>
+                <hr class="devider">
+                <h5>Administration</h5>
+                <ul class="nav nav-pills nav-stacked">
+                    <li id="navMyClub" role="presentation">
+                        <a href="javascript: navigateTo('MainPageContent', '../views/MyClub.html', 'navMyClub', 'Navigation')"
+                           style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+                            <span>Mein Verein</span>
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div id="MainPart" class="col-md-10" style="border-left: 1px solid darkgray; margin-top: 15px">
+        <div id="MainPart" class="col-md-10"
+             style="border-left: 1px solid darkgray; margin-top: 15px; height: calc(100% - 30px); height: -moz-calc(100% - 30px)">
             <div id="PageHeader">
                 <div class="row">
                     <div class="col-md-8">
@@ -55,7 +71,7 @@
                 </div>
             </div>
             <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
-            <div id="MainPageContent" style="border: 1px solid gray">
+            <div id="MainPageContent" style="border: 1px solid gray; height: calc(100% - 55px); height: -moz-calc(100% - 55px); padding: 0;">
             </div>
         </div>
     </div>
@@ -64,5 +80,4 @@
 </html>
 
 <script>
-    registerElementForResize($('#MainPageContent')[0]);
 </script>

@@ -37,3 +37,13 @@
 .nav-pills > li a {
     color: darkred;
 }
+
+.navigation > h5 {
+    color: dimgray;
+    margin-bottom: 5px;
+}
+
+.navigation > .devider {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
