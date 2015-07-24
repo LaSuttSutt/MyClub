@@ -1,0 +1,19 @@
+<h5>Navigation</h5>
+<ul class="nav nav-pills nav-stacked">
+    <li id="navHome" role="presentation" class="active"
+        data-bind="component: { name:'navigationButton',
+        params: { navId:'navHome', text:'Home', view:homeView, viewModel:$data } }">
+    </li>
+    <li id="navMembers" role="presentation"
+        data-bind="component: { name:'navigationButton',
+        params: { navId:'navMembers', text:'Vereins-Mitglieder', view:membersView, viewModel:$data } }">
+    </li>
+</ul>
+<hr class="devider">
+<h5>Administration</h5>
+<ul class="nav nav-pills nav-stacked">
+    <li id="navMyClub" role="presentation"
+        data-bind="component: { name: 'navigationButton',
+        params: { navId:'navMyClub', text:'Mein Verein', view:myClubView, viewModel:$data } }">
+    </li>
+</ul>

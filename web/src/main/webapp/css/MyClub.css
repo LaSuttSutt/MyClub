@@ -20,29 +20,6 @@
     to { -moz-transform: rotate(360deg);}
 }
 
-.nav-pills > li.active a {
-    /*background-color: #3e8f3e;*/
-    background-color: #c9302c;
-}
-
-.nav-pills > li.active a:hover {
-    /*background-color: #4cae4c;*/
-    background-color: #d43f3a;
-}
-
-.nav-pills > li.active a:focus {
-    background-color: #c9302c;
-}
-
-.nav-pills > li a {
-    color: darkred;
-}
-
-.navigation > h5 {
-    color: dimgray;
-    margin-bottom: 5px;
-}
-
 .navigation > .devider {
     margin-top: 5px;
     margin-bottom: 5px;
