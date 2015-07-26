@@ -14,9 +14,41 @@
 </head>
 <body style="height: 100%">
 <div id="indexPage" class="container" style="height: 100%;">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="clubColor">Mein Verein</h1>
+    <div class="row" style="height: 100%">
+        <div id="leftColumn" class="col-md-2">
+            <div id="clubImage" class="row" style="margin-top: 15px" align="middle">
+                <img id="imgClubLogo" src="/myclub/images/TUS.png" style="width: 75px; height: 75px">
+            </div>
+            <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
+            <div id="navigation" class="navigation">
+                <h5>Anmeldung</h5>
+            </div>
+        </div>
+        <div id="mainPart" class="col-md-10"
+             style="border-left: 1px solid darkgray; margin-top: 15px; height: calc(100% - 30px); height: -moz-calc(100% - 30px)">
+            <div id="pageHeader">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3 class="clubColor" style="margin-top: 5px; margin-bottom: 0">Tus Binzen 1956 e.V.</h3>
+                    </div>
+                </div>
+            </div>
+            <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
+            <div id="mainPageContent" style="height: calc(100% - 55px); height: -moz-calc(100% - 55px); padding: 0;">
+                <div id="logInPart" style="display: none" data-bind="visible: loggedIn() == false">
+                    <div class="col-md-4">
+                        <div class="form-group-sm" style="margin-top: 10px">
+                            <label for="logInName">Name oder Kürzel</label>
+                            <input id="logInName" class="form-control" type="text">
+                        </div>
+                        <div class="form-group-sm" style="margin-top: 10px">
+                            <label for="logInPwd">Passwort</label>
+                            <input id="logInPwd" class="form-control" type="password">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

@@ -11,7 +11,7 @@ define(function(require) {
 
             var color = localStoreHelper.getStyleColor();
             if (color == null) {
-                color = '/myclub/css/styleBlue.css';
+                color = '/myclub/css/styleRed.css';
                 localStoreHelper.setStyleColor(color);
             }
 

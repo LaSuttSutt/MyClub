@@ -6,10 +6,10 @@ define(function() {
     return {
 
         getStyleColor: function() {
-            return localStorage.getItem('STYLE_COLOR');
+            return localStorage.getItem('MYCLUB_STYLE_COLOR');
         },
         setStyleColor: function(color) {
-            localStorage.setItem('STYLE_COLOR', color);
+            localStorage.setItem('MYCLUB_STYLE_COLOR', color);
         }
     };
 });
