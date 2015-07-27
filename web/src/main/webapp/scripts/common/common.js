@@ -3,7 +3,7 @@
  */
 define(function(require) {
 
-    var localStoreHelper = require('../common/localStoreHelper');
+    var localStoreHelper = require('../common/localStorageHelper');
 
     var common = {
 

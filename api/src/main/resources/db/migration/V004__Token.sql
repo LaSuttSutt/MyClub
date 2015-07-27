@@ -1,0 +1,6 @@
+CREATE TABLE `Token` (
+  `Id` CHAR(36) NOT NULL,
+  `FkUserId` CHAR(36) NOT NULL,
+  `Created` DATETIME NOT NULL,
+  PRIMARY KEY (`Id`)
+);

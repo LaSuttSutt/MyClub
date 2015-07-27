@@ -1,6 +1,6 @@
 package de.itpuzzles.myclub.api.access.user;
 
-import de.itpuzzles.myclub.api.authentification.HasRole;
+import de.itpuzzles.myclub.api.authentication.HasRole;
 import de.itpuzzles.myclub.api.logic.user.UserLogic;
 import de.itpuzzles.myclub.domainmodel.users.User;
 

@@ -1,4 +1,4 @@
-package de.itpuzzles.myclub.api.authentification;
+package de.itpuzzles.myclub.api.authentication;
 
 import de.itpuzzles.myclub.api.dataaccess.IDataAccessManager;
 

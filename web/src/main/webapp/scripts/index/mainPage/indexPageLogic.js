@@ -4,8 +4,8 @@
 define(function(require) {
 
     var common = require('../../common/common');
-    var localStoreHelper = require('../../common/localStoreHelper');
     var viewModels = require('mainPage/indexPageViewModels');
+    var authenticationLogic = require('authentication/authenticationLogic');
 
     var indexPageLogic = {
 
@@ -13,10 +13,11 @@ define(function(require) {
 
             common.checkStyleColor();
             indexPageLogic.doIndexPageBindings();
+            authenticationLogic.checkAuthentication(viewModels);
         },
         doIndexPageBindings: function() {
 
-            ko.applyBindings(new viewModels.indexPageViewModel(), $('#indexPage')[0]);
+            ko.applyBindings(new viewModels.indexPageViewModel(), viewModels.indexPageViewModelDom());
         }
     };
 
