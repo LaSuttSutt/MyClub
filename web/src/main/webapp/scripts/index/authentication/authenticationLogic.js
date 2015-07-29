@@ -5,12 +5,12 @@ define(function (require) {
 
     var localStorageHelper = require('../../common/localStorageHelper');
     var authenticationApi = require('authentication/authenticationApi');
+    var indexPageViewModels = require('mainPage/indexPageViewModels');
 
     var authenticationLogic = {
 
         checkAuthentication: function(indexPageViewModels) {
 
-            var indexPageViewModels = require('mainPage/indexPageViewModels');
             var viewModel = indexPageViewModels.getLogInViewModel();
 
             // token exists
@@ -30,7 +30,6 @@ define(function (require) {
         // LogIn
         logIn: function() {
 
-            var indexPageViewModels = require('mainPage/indexPageViewModels');
             var viewModel = indexPageViewModels.getLogInViewModel();
 
             viewModel.resetValidation();
@@ -38,14 +37,18 @@ define(function (require) {
         },
         logInSucceed: function(logInResult) {
 
-            var indexPageViewModels = require('mainPage/indexPageViewModels');
             var viewModel = indexPageViewModels.getLogInViewModel();
 
+            /** @namespace logInResult.errors */
             if (!logInResult.success) {
                 authenticationLogic.showLogInValidationErros(logInResult.errors);
             }
             else {
                 viewModel.loggedIn(true);
+
+                /** @namespace logInResult.token */
+                /** @namespace logInResult.user */
+                /** @namespace logInResult.user.roles */
                 localStorageHelper.setToken(logInResult.token);
                 localStorageHelper.setUserName(logInResult.user.name);
                 localStorageHelper.setUserRoles(logInResult.user.roles);
