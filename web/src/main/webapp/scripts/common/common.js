@@ -27,6 +27,7 @@ define(function(require) {
             newlink.setAttribute("href", cssFile);
 
             document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+            localStoreHelper.setStyleColor(cssFile);
         }
     };
 

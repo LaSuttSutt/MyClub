@@ -10,7 +10,7 @@
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript" src="../js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/knockout/knockout.js"></script>
-    <script data-main="../scripts/management/managementModule" src="../js/require.js"></script>
+    <script data-main="../scripts/managementModule" src="../js/require.js"></script>
 </head>
 <body style="height: 100%">
 <div id="mainPage" class="container" style="height: 100%;">
@@ -22,7 +22,7 @@
             <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
             <div id="navigation" class="navigation"
                  data-bind="component: { name:'mainPageNavigation',
-                 params: { contentDiv:contentDiv, navDiv:navDiv } }">
+                 params: { contentDiv:'mainPageContent', navDiv:'navigation' } }">
             </div>
         </div>
         <div id="mainPart" class="col-md-10"

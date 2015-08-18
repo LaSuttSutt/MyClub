@@ -7,8 +7,8 @@ define(function() {
 
         this.contentDiv = params.contentDiv;
         this.navDiv = params.navDiv;
-        this.homeView = '../views/home.html';
-        this.membersView = '../views/members.html';
-        this.myClubView = '../views/myClub.html';
+        this.homeView = '../views/management/home.html';
+        this.membersView = '../views/management/members.html';
+        this.myClubView = '../views/management/myClub.html';
     };
 });
