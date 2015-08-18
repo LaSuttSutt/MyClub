@@ -19,10 +19,7 @@
             <div id="clubImage" class="row" style="margin-top: 15px" align="middle">
                 <img id="imgClubLogo" src="../images/TUS.png" style="width: 75px; height: 75px">
             </div>
-            <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
-            <div id="navigation" class="navigation"
-                 data-bind="component: { name:'mainPageNavigation',
-                 params: { contentDiv:'mainPageContent', navDiv:'navigation' } }">
+            <div id="navigation" data-bind="component: { name:'navigationMenu', params: { data: data.navigation } }">
             </div>
         </div>
         <div id="mainPart" class="col-md-10"

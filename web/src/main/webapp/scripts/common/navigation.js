@@ -3,18 +3,20 @@
  */
 define(function() {
 
-    return {
+    var self = {
 
-        navigateTo: function(contentDiv, view, control, navId) {
+        currentNavItem: ko.observable(),
+        navigateTo: function(contentDom, view, control) {
 
-            $('#' + navId).children().children().removeClass('active');
-            $('#' + control).addClass('active');
+            self.currentNavItem(control);
 
-            var contentDivInst = $('#' + contentDiv);
-            contentDivInst.empty();
-            contentDivInst.load(view);
+            var contentDomInst = $('#' + contentDom);
+            contentDomInst.empty();
+            contentDomInst.load(view);
         }
     };
+
+    return self;
 });
 
 

@@ -15,6 +15,9 @@ define(function (require) {
             var token = localStorageHelper.getToken();
             if (token == null) {
                 data.authentication.focus(true);
+                if (window.location.pathname != "/myclub/index.html") {
+                    window.location = "/myclub/index.html";
+                }
                 return;
             }
 

@@ -4,6 +4,7 @@
 define(function(require) {
 
     var data = require('management/managementViewData');
+    var navigation = require('common/navigation');
 
     var self = {
 
@@ -17,6 +18,11 @@ define(function(require) {
             var dom = $('#mainPage')[0];
             ko.cleanNode(dom);
             ko.applyBindings(new self.viewModel(), dom);
+
+            // Navigation
+            var navDom = data.navigation().contentDom();
+            var item = data.navigation().menuGroups()[0].items()[0];
+            navigation.navigateTo(navDom, item.view(), item.dom());
         },
         registerComponents: function() {
 
