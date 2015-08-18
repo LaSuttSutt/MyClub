@@ -3,20 +3,18 @@
  */
 define(function (require) {
 
-    var localStorageHelper = require('../../common/localStorageHelper');
-    var authenticationApi = require('authentication/authenticationApi');
-    var indexPageViewModels = require('mainPage/indexPageViewModels');
+    var localStorageHelper = require('common/localStorageHelper');
+    var api = require('authentication/authenticationApi');
+    var data = require('startUp/startUpViewData');
 
-    var authenticationLogic = {
+    var self = {
 
-        checkAuthentication: function(indexPageViewModels) {
-
-            var viewModel = indexPageViewModels.getLogInViewModel();
+        checkAuthentication: function() {
 
             // token exists
             var token = localStorageHelper.getToken();
             if (token == null) {
-                viewModel.setlogInFocus();
+                data.authentication.focus(true);
                 return;
             }
 
@@ -24,27 +22,25 @@ define(function (require) {
 
 
             // token prooved
-            viewModel.loggedIn(true);
+            data.authentication.loggedIn(true);
         },
 
         // LogIn
         logIn: function() {
 
-            var viewModel = indexPageViewModels.getLogInViewModel();
+            data.authentication.userNameValidation('');
+            data.authentication.passwordValidation('');
 
-            viewModel.resetValidation();
-            authenticationApi.logIn(viewModel.userName(), viewModel.password(), authenticationLogic.logInSucceed);
+            api.logIn(data.authentication.userName(), data.authentication.password(), self.logInSucceed);
         },
         logInSucceed: function(logInResult) {
 
-            var viewModel = indexPageViewModels.getLogInViewModel();
-
             /** @namespace logInResult.errors */
             if (!logInResult.success) {
-                authenticationLogic.showLogInValidationErros(logInResult.errors);
+                self.showValidationErros(logInResult.errors);
             }
             else {
-                viewModel.loggedIn(true);
+                data.authentication.loggedIn(true);
 
                 /** @namespace logInResult.token */
                 /** @namespace logInResult.user */
@@ -54,10 +50,7 @@ define(function (require) {
                 localStorageHelper.setUserRoles(logInResult.user.roles);
             }
         },
-        showLogInValidationErros: function(errors) {
-
-            var indexPageViewModels = require('mainPage/indexPageViewModels');
-            var viewModel = indexPageViewModels.getLogInViewModel();
+        showValidationErros: function(errors) {
 
             errors.forEach(function(error) {
 
@@ -67,17 +60,17 @@ define(function (require) {
                 //noinspection JSValidateTypes
                 if (error.field == 'name') {
 
-                    viewModel.setUserNameValidationError(error.errorMessage);
+                    data.authentication.userNameValidation(error.errorMessage);
                 }
 
                 //noinspection JSValidateTypes
                 if (error.field == 'password') {
 
-                    viewModel.setPasswordValidationError(error.errorMessage);
+                    data.authentication.passwordValidation(error.errorMessage);
                 }
             });
         }
     };
 
-    return authenticationLogic;
+    return self;
 });

@@ -10,14 +10,14 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/knockout/knockout.js"></script>
-    <script data-main="scripts/index/indexModule" src="js/require.js"></script>
+    <script data-main="scripts/startUpModule" src="js/require.js"></script>
 </head>
 <body style="height: 100%">
 <div id="indexPage" class="container" style="height: 100%;">
     <div class="row" style="height: 100%">
         <div id="leftColumn" class="col-md-2">
             <div id="clubImage" class="row" style="margin-top: 15px" align="middle">
-                <img id="imgClubLogo" src="/myclub/images/TUS.png" style="width: 75px; height: 75px">
+                <img id="imgClubLogo" src="images/TUS.png" style="width: 75px; height: 75px">
             </div>
             <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
             <div id="navigation" class="navigation">
@@ -35,18 +35,21 @@
             </div>
             <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
             <div id="mainPageContent" style="height: calc(100% - 55px); height: -moz-calc(100% - 55px); padding: 0;">
-                <div id="logInPart" style="display: none" data-bind="visible: logInViewModel.loggedIn() == false">
-                    <form role="form" data-bind="submit: logInViewModel.logIn">
+                <div id="logInPart" style="display: none" data-bind="visible: authentication.loggedIn() == false">
+                    <form role="form" data-bind="submit: logIn">
                         <div class="col-md-4">
-                            <div class="form-group-sm" style="margin-top: 10px">
+                            <div class="form-group-sm" style="margin-top: 10px"
+                                 data-bind="css: { 'has-error': authentication.userNameValidation().length > 0 }">
                                 <label for="logInName">Name oder Kürzel</label>
-                                <input id="logInName" class="form-control" type="text" data-bind="value: logInViewModel.userName">
-                                <a style="color: darkred; text-decoration: none" data-bind="text: logInViewModel.userNameValidation"></a>
+                                <input id="logInName" class="form-control" type="text"
+                                       data-bind="value: authentication.userName, hasFocus: authentication.focus">
+                                <a style="color: darkred; text-decoration: none" data-bind="text: authentication.userNameValidation"></a>
                             </div>
-                            <div class="form-group-sm" style="margin-top: 10px">
+                            <div class="form-group-sm" style="margin-top: 10px"
+                                 data-bind="css: { 'has-error': authentication.passwordValidation().length > 0 }">
                                 <label for="logInPwd">Passwort</label>
-                                <input id="logInPwd" class="form-control" type="password" data-bind="value: logInViewModel.password">
-                                <a style="color: darkred; text-decoration: none" data-bind="text: logInViewModel.passwordValidation"></a>
+                                <input id="logInPwd" class="form-control" type="password" data-bind="value: authentication.password">
+                                <a style="color: darkred; text-decoration: none" data-bind="text: authentication.passwordValidation"></a>
                             </div>
                             <div class="form-group-sm" style="margin-top: 10px">
                                 <button class="btn btn-success btn-sm" type="submit">Anmelden</button>
