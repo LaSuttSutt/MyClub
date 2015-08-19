@@ -9,23 +9,54 @@ define(function (require) {
 
     var self = {
 
-        checkAuthentication: function() {
+        checkAuthentication: function(afterCheck) {
 
             // token exists
-            var token = localStorageHelper.getToken();
-            if (token == null) {
+            var tokenId = localStorageHelper.getTokenId();
+            var userId = localStorageHelper.getUserId();
+            if (tokenId == null || userId == null) {
                 data.authentication.focus(true);
                 if (window.location.pathname != "/myclub/index.html") {
                     window.location = "/myclub/index.html";
                 }
+                afterCheck(false);
                 return;
             }
 
+            // success
+            var success = function(user) {
+
+                // Set user
+                localStorageHelper.setUserId(user.id);
+                localStorageHelper.setUserName(user.name);
+                localStorageHelper.setUserRoles(user.roles);
+
+                data.authentication.loggedIn(true);
+
+                // Given success
+                afterCheck(true);
+            };
+
+            // error
+            var error = function(error) {
+                if (error.status == 401) {
+
+                    data.authentication.focus(true);
+                    data.authentication.loggedIn(false);
+                    localStorageHelper.deleteTokenId();
+                    localStorageHelper.deleteUserId();
+                    localStorageHelper.deleteUserName();
+                    localStorageHelper.deleteUserRoles();
+
+                    if (window.location.pathname != "/myclub/index.html") {
+                        window.location = "/myclub/index.html";
+                    }
+                }
+                afterCheck(false);
+            };
+
             // check token
-
-
-            // token prooved
-            data.authentication.loggedIn(true);
+            api.checkAuthentication(tokenId, userId, success, error);
         },
 
         // LogIn
@@ -34,24 +65,29 @@ define(function (require) {
             data.authentication.userNameValidation('');
             data.authentication.passwordValidation('');
 
-            api.logIn(data.authentication.userName(), data.authentication.password(), self.logInSucceed);
-        },
-        logInSucceed: function(logInResult) {
+            // success
+            var success = function(logInResult) {
 
-            /** @namespace logInResult.errors */
-            if (!logInResult.success) {
-                self.showValidationErros(logInResult.errors);
-            }
-            else {
-                data.authentication.loggedIn(true);
+                /** @namespace logInResult.errors */
+                if (!logInResult.success) {
+                    self.showValidationErros(logInResult.errors);
+                }
+                else {
+                    data.authentication.loggedIn(true);
 
-                /** @namespace logInResult.token */
-                /** @namespace logInResult.user */
-                /** @namespace logInResult.user.roles */
-                localStorageHelper.setToken(logInResult.token);
-                localStorageHelper.setUserName(logInResult.user.name);
-                localStorageHelper.setUserRoles(logInResult.user.roles);
-            }
+                    /** @namespace logInResult.token */
+                    /** @namespace logInResult.user */
+                    /** @namespace logInResult.user.roles */
+                    localStorageHelper.setTokenId(logInResult.token.id);
+                    localStorageHelper.setUserId(logInResult.user.id);
+                    localStorageHelper.setUserName(logInResult.user.name);
+                    localStorageHelper.setUserRoles(logInResult.user.roles);
+
+                    window.location.reload();
+                }
+            };
+
+            api.logIn(data.authentication.userName(), data.authentication.password(), success);
         },
         showValidationErros: function(errors) {
 

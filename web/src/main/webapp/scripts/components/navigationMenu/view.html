@@ -2,7 +2,8 @@
     <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
     <h5 data-bind="text: header"></h5>
     <ul class="nav nav-pills nav-stacked" data-bind="foreach: items()">
-        <li role="presentation" data-bind="css: { 'active': $parents[1].currentNavItem() == dom() }">
+        <li role="presentation" data-bind="css: { 'active': $parents[1].currentNavItem() == dom() },
+        visible: visible">
             <a data-bind="click: $parents[1].navigate" href="#"
                style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
                 <span data-bind="text: text"></span>

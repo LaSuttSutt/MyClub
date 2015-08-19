@@ -55,6 +55,17 @@ public class UserLogic {
         return result;
     }
 
+    // Returns the user with the given id
+    public User getUserById(UUID id) {
+
+        User user = dataAccessManager.getEntityById(User.class, id);
+        if (user == null)
+            return null;
+
+        user.setRoles(this.loadRolesForUser(id));
+        return user;
+    }
+
     // Creates a MD5-Hash from the given text
     public  String createMd5(String text) {
 

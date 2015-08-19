@@ -29,7 +29,7 @@ public class AuthenticationApi {
     @Path("/check")
     public User checkAuthentication(@FormParam("tokenId") UUID tokenId, @FormParam("userId") UUID userId) {
 
-        return null;
+        return authenticationLogic.checkAuthentication(tokenId, userId);
     }
 
     @POST

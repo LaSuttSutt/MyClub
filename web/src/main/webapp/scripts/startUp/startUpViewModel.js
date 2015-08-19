@@ -4,17 +4,26 @@
 define(function(require) {
 
     var data = require('startUp/startUpViewData');
+    var logic = require('startUp/startUpLogic');
     var authentication = require('authentication/authentication');
+    var navigation = require('common/navigation');
 
     var self = {
 
         viewModel: function() {
 
+            this.data = data;
+            this.contentDom = data.navigation().contentDom();
             this.authentication = data.authentication;
 
+            // Navigation
+            this.doInitialNavigation = logic.doInitialNavigation;
             this.logIn = authentication.logIn;
         },
         initializeView: function() {
+
+            // Menü
+            data.navigation(data.navLogIn());
 
             // Binding
             var dom = $('#indexPage')[0];

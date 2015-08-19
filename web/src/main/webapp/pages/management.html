@@ -14,46 +14,12 @@
 </head>
 <body style="height: 100%">
 <div id="mainPage" class="container" style="height: 100%;">
-    <div class="row" style="height: 100%">
-        <div id="leftColumn" class="col-md-2">
-            <div id="clubImage" class="row" style="margin-top: 15px" align="middle">
-                <img id="imgClubLogo" src="../images/TUS.png" style="width: 75px; height: 75px">
-            </div>
-            <div id="navigation" data-bind="component: { name:'navigationMenu', params: { data: data.navigation } }">
-            </div>
-        </div>
-        <div id="mainPart" class="col-md-10"
-             style="border-left: 1px solid darkgray; margin-top: 15px; height: calc(100% - 30px); height: -moz-calc(100% - 30px)">
-            <div id="pageHeader">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h3 class="clubColor" style="margin-top: 5px; margin-bottom: 0">Tus Binzen 1956 e.V.</h3>
-                    </div>
-                    <div class="col-md-4" align="right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false"
-                                    style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"
-                                      style="padding-right: 5px"></span>
-                                <a style="text-decoration: none; color: #080808; padding-right: 10px">Sven Sutter</a>
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" style="padding: 3px">
-                                <li>
-                                    <a href="#">Test</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
-            <div id="mainPageContent"
-                 style="border: 1px solid gray; height: calc(100% - 55px); height: -moz-calc(100% - 55px); padding: 0;">
-            </div>
-        </div>
+
+    <div style="height: 100%"
+         data-bind="component: { name: 'pageLayout', params:
+         { navigation: data.navigation, contentDom: contentDom, doInitialNavigation: doInitialNavigation } }">
     </div>
+
 </div>
 </body>
 </html>

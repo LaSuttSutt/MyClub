@@ -14,12 +14,14 @@ define(function () {
                         {
                             text: ko.observable('Home'),
                             dom: ko.observable('navHome'),
-                            view: ko.observable('../views/management/home.html')
+                            view: ko.observable('/myclub/views/management/home.html'),
+                            visible: ko.observable(true)
                         },
                         {
                             text: ko.observable('Vereins-Mitglieder'),
                             dom: ko.observable('navMembers'),
-                            view: ko.observable('../views/management/members.html')
+                            view: ko.observable('/myclub/views/management/members.html'),
+                            visible: ko.observable(true)
                         }
                     ])
                 },
@@ -29,7 +31,8 @@ define(function () {
                         {
                             text: ko.observable('Mein Verein'),
                             dom: ko.observable('navMyClub'),
-                            view: ko.observable('../views/management/myClub.html')
+                            view: ko.observable('/myclub/views/management/myClub.html'),
+                            visible: ko.observable(true)
                         }
                     ])
                 }

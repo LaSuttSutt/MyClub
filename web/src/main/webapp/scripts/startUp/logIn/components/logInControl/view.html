@@ -1,0 +1,22 @@
+<div id="logInPart">
+    <form role="form" data-bind="submit: logIn">
+        <div class="col-md-4">
+            <div class="form-group-sm" style="margin-top: 10px"
+                 data-bind="css: { 'has-error': authentication.userNameValidation().length > 0 }">
+                <label for="logInName">Name oder Kürzel</label>
+                <input id="logInName" class="form-control" type="text"
+                       data-bind="value: authentication.userName, hasFocus: authentication.focus">
+                <a style="color: darkred; text-decoration: none" data-bind="text: authentication.userNameValidation"></a>
+            </div>
+            <div class="form-group-sm" style="margin-top: 10px"
+                 data-bind="css: { 'has-error': authentication.passwordValidation().length > 0 }">
+                <label for="logInPwd">Passwort</label>
+                <input id="logInPwd" class="form-control" type="password" data-bind="value: authentication.password">
+                <a style="color: darkred; text-decoration: none" data-bind="text: authentication.passwordValidation"></a>
+            </div>
+            <div class="form-group-sm" style="margin-top: 10px">
+                <button class="btn btn-success btn-sm" type="submit">Anmelden</button>
+            </div>
+        </div>
+    </form>
+</div>

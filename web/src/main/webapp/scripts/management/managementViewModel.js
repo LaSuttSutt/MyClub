@@ -10,7 +10,17 @@ define(function(require) {
 
         viewModel: function() {
 
+            var self = this;
+
             this.data = data;
+            this.contentDom = data.navigation().contentDom();
+
+            // Navigation
+            this.doInitialNavigation = function() {
+
+                var item = data.navigation().menuGroups()[0].items()[0];
+                navigation.navigateTo(self.contentDom, item.view(), item.dom());
+            };
         },
         initializeView: function() {
 
@@ -18,11 +28,6 @@ define(function(require) {
             var dom = $('#mainPage')[0];
             ko.cleanNode(dom);
             ko.applyBindings(new self.viewModel(), dom);
-
-            // Navigation
-            var navDom = data.navigation().contentDom();
-            var item = data.navigation().menuGroups()[0].items()[0];
-            navigation.navigateTo(navDom, item.view(), item.dom());
         },
         registerComponents: function() {
 

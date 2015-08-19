@@ -6,11 +6,13 @@ import de.itpuzzles.myclub.domainmodel.authentication.LogInResult;
 import de.itpuzzles.myclub.domainmodel.authentication.Token;
 import de.itpuzzles.myclub.domainmodel.users.User;
 import de.itpuzzles.myclub.domainmodel.validation.ValidationError;
+import org.joda.time.DateTime;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
+import javax.ws.rs.NotAuthorizedException;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Stateless
 public class AuthenticationLogic {
@@ -38,7 +40,7 @@ public class AuthenticationLogic {
         }
 
         // Validation user exists
-        User user = this.loadUser(userName);
+        User user = userLogic.getUserByNameOrShortName(userName);
         if (user == null) {
             errors.add(new ValidationError("name", "Der Benutzer ist nicht bekannt"));
             return new LogInResult(errors);
@@ -59,14 +61,31 @@ public class AuthenticationLogic {
         return new LogInResult(this.createAndStoreUserToken(user), user);
     }
 
+    public User checkAuthentication(UUID tokenId, UUID userId) {
+
+        Token token = dataAccessManager.getEntityById(Token.class, tokenId);
+        User user = userLogic.getUserById(userId);
+
+        if (token == null || user == null)
+            throw new NotAuthorizedException("Token oder Benutzer konnten nicht gefunden werden");
+
+        if (!token.getFkUserId().equals(userId))
+            throw new NotAuthorizedException("Token gehört nicht zum angegebenen Benutzer");
+
+        long tokenTime = token.getCreated().getTime();
+        long nowTime = new Date().getTime();
+        long tokenAge = nowTime - tokenTime;
+        long hourSpan = TimeUnit.HOURS.convert(tokenAge, TimeUnit.MILLISECONDS);
+
+        if (hourSpan > 4)
+            throw new NotAuthorizedException("Token gehört nicht zum angegebenen Benutzer");
+
+        return user;
+    }
+
     //endregion
 
     //region #Private Methods
-
-    private User loadUser(String name) {
-
-        return userLogic.getUserByNameOrShortName(name);
-    }
 
     private boolean checkPassword(User user, String password) {
 
@@ -76,9 +95,22 @@ public class AuthenticationLogic {
 
     private Token createAndStoreUserToken(User user) {
 
+        // Alte Tokens löschen
+        this.deleteOldTokens(user.getId());
+
         Token token = new Token(user.getId());
         dataAccessManager.store(token);
         return token;
+    }
+
+    private void deleteOldTokens(UUID userId) {
+
+        String query = "SELECT t FROM Token t WHERE t.fkUserId = :userId";
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("userId", userId.toString());
+
+        List<Token> oldTokens = dataAccessManager.getEntities(Token.class, query, parameters);
+        oldTokens.forEach(dataAccessManager::delete);
     }
 
     //endregion

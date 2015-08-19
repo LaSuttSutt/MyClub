@@ -1,11 +1,18 @@
 /*
  Startup-Module for the application
  */
-requirejs(['startUp/startUpViewModel', 'common/common', 'authentication/authentication', 'common/componentLoader'],
-    function(model, common, authentication) {
+requirejs(['startUp/startUpViewModel', 'startUp/startUpLogic' , 'common/common', 'authentication/authentication',
+        'common/componentLoader'],
+    function(model, logic, common, authentication) {
 
-        common.checkStyleColor();
-        model.initializeView();
-        authentication.checkAuthentication();
+        authentication.checkAuthentication(function(ok) {
+
+            common.checkStyleColor();
+            model.initializeView();
+
+            if (ok) {
+                logic.setModulesMenu();
+            }
+        });
     }
 );

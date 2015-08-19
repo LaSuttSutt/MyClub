@@ -1,0 +1,11 @@
+<div id="logInPage">
+
+    <div data-bind="component: { name: 'logInControl' }"></div>
+
+</div>
+
+<script>
+    require(['startUp/logIn/logInViewModel'], function (viewModel) {
+        viewModel.initializeView();
+    });
+</script>
