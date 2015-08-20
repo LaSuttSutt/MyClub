@@ -5,7 +5,7 @@ define(function() {
 
     return {
 
-        checkAuthenticationPromise: function(tokenId, userId) {
+        checkAuthentication: function(tokenId, userId) {
 
             return new Promise(function(resolve, reject) {
 
@@ -21,31 +21,19 @@ define(function() {
                 });
             });
         },
+        logIn: function(userName, password) {
 
-        checkAuthentication: function(tokenId, userId, onSuccess, onError) {
+            return new Promise(function(resolve) {
+                $.ajax({
 
-            $.ajax({
-                type: 'POST',
-                url: '/myclub/api/authentication/check',
-                success: onSuccess,
-                error: onError,
-                data: {
-                    tokenId: tokenId,
-                    userId: userId
-                }
-            });
-        },
-        logIn: function(userName, password, success) {
-
-            $.ajax({
-
-                type: 'POST',
-                url: '/myclub/api/authentication/logIn',
-                success: success,
-                data: {
-                    userName: userName,
-                    password: password
-                }
+                    type: 'POST',
+                    url: '/myclub/api/authentication/logIn',
+                    success: resolve,
+                    data: {
+                        userName: userName,
+                        password: password
+                    }
+                });
             });
         }
     };

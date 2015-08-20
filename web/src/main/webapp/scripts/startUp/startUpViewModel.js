@@ -18,7 +18,6 @@ define(function(require) {
 
             // Navigation
             this.doInitialNavigation = logic.doInitialNavigation;
-            this.logIn = authentication.logIn;
         },
         initializeView: function() {
 

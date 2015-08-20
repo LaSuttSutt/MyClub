@@ -9,6 +9,7 @@ define(function (require) {
 
     var self = {
 
+        // Authentication
         checkAuthentication: function() {
 
             return new Promise(function(resolve, reject) {
@@ -20,7 +21,7 @@ define(function (require) {
                     reject();
                 }
 
-                api.checkAuthenticationPromise(tokenUserData.tokenId, tokenUserData.userId).then(function(user) {
+                api.checkAuthentication(tokenUserData.tokenId, tokenUserData.userId).then(function(user) {
 
                     self.storeUserData(user);
                     data.authentication.loggedIn(true);
@@ -45,32 +46,29 @@ define(function (require) {
         // LogIn
         logIn: function() {
 
-            data.authentication.userNameValidation('');
-            data.authentication.passwordValidation('');
+            return new Promise(function(resolve, reject) {
 
-            // success
-            var success = function(logInResult) {
+                data.authentication.userNameValidation('');
+                data.authentication.passwordValidation('');
 
-                /** @namespace logInResult.errors */
-                if (!logInResult.success) {
-                    self.showValidationErros(logInResult.errors);
-                }
-                else {
-                    data.authentication.loggedIn(true);
+                api.logIn(data.authentication.userName(), data.authentication.password()).then(
+                    function(logInResult) {
 
-                    /** @namespace logInResult.token */
-                    /** @namespace logInResult.user */
-                    /** @namespace logInResult.user.roles */
-                    localStorageHelper.setTokenId(logInResult.token.id);
-                    localStorageHelper.setUserId(logInResult.user.id);
-                    localStorageHelper.setUserName(logInResult.user.name);
-                    localStorageHelper.setUserRoles(logInResult.user.roles);
-
-                    window.location.reload();
-                }
-            };
-
-            api.logIn(data.authentication.userName(), data.authentication.password(), success);
+                        /** @namespace logInResult.errors */
+                        if (!logInResult.success) {
+                            self.showValidationErros(logInResult.errors);
+                            reject();
+                        }
+                        else {
+                            /** @namespace logInResult.token */
+                            data.authentication.loggedIn(true);
+                            localStorageHelper.setTokenId(logInResult.token.id);
+                            self.storeUserData(logInResult.user);
+                            resolve();
+                        }
+                    }
+                );
+            });
         },
         showValidationErros: function(errors) {
 
@@ -78,16 +76,13 @@ define(function (require) {
 
                 /** @namespace error.errorMessage */
                 /** @namespace error.field */
-
                 //noinspection JSValidateTypes
                 if (error.field == 'name') {
-
                     data.authentication.userNameValidation(error.errorMessage);
                 }
 
                 //noinspection JSValidateTypes
                 if (error.field == 'password') {
-
                     data.authentication.passwordValidation(error.errorMessage);
                 }
             });

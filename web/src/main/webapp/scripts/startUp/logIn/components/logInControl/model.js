@@ -4,11 +4,16 @@
 define(function(require) {
 
     var data = require('startUp/startUpViewData');
+    var logic = require('startUp/startUpLogic');
     var authentication = require('authentication/authentication');
 
     return function() {
 
         this.authentication = data.authentication;
-        this.logIn = authentication.logIn;
+        this.logIn = function() {
+            authentication.logIn().then(function() {
+                logic.setModulesMenu();
+            });
+        };
     };
 });

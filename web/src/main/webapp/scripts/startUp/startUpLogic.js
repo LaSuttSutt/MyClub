@@ -5,6 +5,7 @@ define(function(require) {
 
     var data = require('startUp/startUpViewData');
     var navigation = require('common/navigation');
+    var authentication = require('authentication/authentication');
 
     var self = {
         setModulesMenu: function() {
