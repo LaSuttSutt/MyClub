@@ -4,8 +4,14 @@
 requirejs(['management/managementViewModel', 'common/common', 'authentication/authentication', 'common/componentLoader'],
     function(model, common, authentication) {
 
-        common.checkStyleColor();
-        model.initializeView();
-        authentication.checkAuthentication();
+        authentication.checkAuthentication().then(function() {
+
+            common.checkStyleColor();
+            model.initializeView();
+
+        }, function() {
+
+            window.location = "/myclub/index.html";
+        });
     }
 );

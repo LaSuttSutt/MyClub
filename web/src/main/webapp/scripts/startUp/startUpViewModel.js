@@ -22,9 +22,6 @@ define(function(require) {
         },
         initializeView: function() {
 
-            // Menü
-            data.navigation(data.navLogIn());
-
             // Binding
             var dom = $('#indexPage')[0];
             ko.cleanNode(dom);

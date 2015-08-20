@@ -5,6 +5,23 @@ define(function() {
 
     return {
 
+        checkAuthenticationPromise: function(tokenId, userId) {
+
+            return new Promise(function(resolve, reject) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/myclub/api/authentication/check',
+                    success: resolve,
+                    error: reject,
+                    data: {
+                        tokenId: tokenId,
+                        userId: userId
+                    }
+                });
+            });
+        },
+
         checkAuthentication: function(tokenId, userId, onSuccess, onError) {
 
             $.ajax({

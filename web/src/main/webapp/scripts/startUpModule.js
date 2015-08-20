@@ -5,14 +5,17 @@ requirejs(['startUp/startUpViewModel', 'startUp/startUpLogic' , 'common/common',
         'common/componentLoader'],
     function(model, logic, common, authentication) {
 
-        authentication.checkAuthentication(function(ok) {
+        authentication.checkAuthentication().then(function() {
 
             common.checkStyleColor();
+            logic.setModulesMenu();
             model.initializeView();
 
-            if (ok) {
-                logic.setModulesMenu();
-            }
+        }, function() {
+
+            common.checkStyleColor();
+            logic.setLogInMenu();
+            model.initializeView();
         });
     }
 );

@@ -9,54 +9,37 @@ define(function (require) {
 
     var self = {
 
-        checkAuthentication: function(afterCheck) {
+        checkAuthentication: function() {
 
-            // token exists
-            var tokenId = localStorageHelper.getTokenId();
-            var userId = localStorageHelper.getUserId();
-            if (tokenId == null || userId == null) {
-                data.authentication.focus(true);
-                if (window.location.pathname != "/myclub/index.html") {
-                    window.location = "/myclub/index.html";
-                }
-                afterCheck(false);
-                return;
-            }
+            return new Promise(function(resolve, reject) {
 
-            // success
-            var success = function(user) {
-
-                // Set user
-                localStorageHelper.setUserId(user.id);
-                localStorageHelper.setUserName(user.name);
-                localStorageHelper.setUserRoles(user.roles);
-
-                data.authentication.loggedIn(true);
-
-                // Given success
-                afterCheck(true);
-            };
-
-            // error
-            var error = function(error) {
-                if (error.status == 401) {
-
+                var tokenUserData = self.getTokenAndUser();
+                if (tokenUserData == null) {
                     data.authentication.focus(true);
                     data.authentication.loggedIn(false);
-                    localStorageHelper.deleteTokenId();
-                    localStorageHelper.deleteUserId();
-                    localStorageHelper.deleteUserName();
-                    localStorageHelper.deleteUserRoles();
-
-                    if (window.location.pathname != "/myclub/index.html") {
-                        window.location = "/myclub/index.html";
-                    }
+                    reject();
                 }
-                afterCheck(false);
-            };
 
-            // check token
-            api.checkAuthentication(tokenId, userId, success, error);
+                api.checkAuthenticationPromise(tokenUserData.tokenId, tokenUserData.userId).then(function(user) {
+
+                    self.storeUserData(user);
+                    data.authentication.loggedIn(true);
+                    resolve();
+
+                }, function(error) {
+
+                    if (error.status == 401) {
+
+                        data.authentication.focus(true);
+                        data.authentication.loggedIn(false);
+                        localStorageHelper.deleteTokenId();
+                        localStorageHelper.deleteUserId();
+                        localStorageHelper.deleteUserName();
+                        localStorageHelper.deleteUserRoles();
+                    }
+                    reject();
+                });
+            });
         },
 
         // LogIn
@@ -108,6 +91,35 @@ define(function (require) {
                     data.authentication.passwordValidation(error.errorMessage);
                 }
             });
+        },
+
+        // Helper
+        getTokenAndUser: function() {
+
+            var tokenId = localStorageHelper.getTokenId();
+            var userId = localStorageHelper.getUserId();
+
+            if (tokenId == null || userId == null) {
+                return null;
+            }
+
+            return {
+                tokenId: tokenId,
+                userId: userId
+            };
+        },
+        storeUserData: function(user) {
+
+            localStorageHelper.setUserId(user.id);
+            localStorageHelper.setUserName(user.name);
+            localStorageHelper.setUserRoles(user.roles);
+        },
+        deleteStoredUserData: function() {
+
+            localStorageHelper.deleteTokenId();
+            localStorageHelper.deleteUserId();
+            localStorageHelper.deleteUserName();
+            localStorageHelper.deleteUserRoles();
         }
     };
 
