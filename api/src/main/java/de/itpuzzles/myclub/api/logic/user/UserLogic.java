@@ -83,11 +83,8 @@ public class UserLogic {
         }
     }
 
-    //endregion
-
-    //region #Private Methods
-
-    private List<User.UserRole> loadRolesForUser(UUID userId) {
+    // Returns all roles for the user with the given id
+    public List<User.UserRole> loadRolesForUser(UUID userId) {
 
         List<UserRoles> allRoles = dataAccessManager.getAllEntities(UserRoles.class);
         return allRoles.stream().filter

@@ -2,13 +2,17 @@ package de.itpuzzles.myclub.api.authentication;
 
 import de.itpuzzles.myclub.api.dataaccess.IDataAccessManager;
 import de.itpuzzles.myclub.api.logic.authentication.AuthenticationLogic;
+import de.itpuzzles.myclub.api.logic.user.UserLogic;
+import de.itpuzzles.myclub.domainmodel.users.User;
 
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.NotAuthorizedException;
+import java.util.List;
 import java.util.UUID;
 
 @Interceptor
@@ -26,6 +30,9 @@ public class HasRoleInterceptor {
     @Inject
     private AuthenticationLogic authenticationLogic;
 
+    @Inject
+    private UserLogic userLogic;
+
     //endregion
 
     //region #Public Methods
@@ -33,8 +40,8 @@ public class HasRoleInterceptor {
     @AroundInvoke
     public Object checkUserRole(InvocationContext context) throws Exception {
 
-        String tokenUser = request.getHeader("MYCLUB_TOKEN_USER");
-        String tokenId = request.getHeader("MYCLUB_TOKEN_ID");
+        String tokenUser = request.getHeader("userId");
+        String tokenId = request.getHeader("tokenId");
 
         if (tokenUser == null || tokenId == null ||
                 tokenUser.equals("null") || tokenId.equals("null") ||
@@ -43,7 +50,15 @@ public class HasRoleInterceptor {
 
         authenticationLogic.checkAuthentication(UUID.fromString(tokenId), UUID.fromString(tokenUser));
 
-        return context.proceed();
+        // check roles
+        List<User.UserRole> userRoles = userLogic.loadRolesForUser(UUID.fromString(tokenUser));
+        User.UserRole[] roles = context.getMethod().getAnnotation(HasRole.class).value();
+        for (User.UserRole role : roles) {
+            if (userRoles.contains(role))
+                return context.proceed();
+        }
+
+        throw new ForbiddenException("Zugriff nicht erlaubt");
     }
 
     //endregion

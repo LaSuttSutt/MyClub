@@ -3,7 +3,7 @@
  */
 define(function() {
 
-    return {
+    var self = {
 
         authentication: {
 
@@ -16,6 +16,21 @@ define(function() {
         },
         user: {
             userId: ko.observable('')
+        },
+        global: {
+            error: ko.observable(false),
+            errorMessage: ko.observable(''),
+            setError: function(message) {
+                self.global.error(true);
+                self.global.errorMessage(message);
+                self.global.loading(false);
+            },
+            loading: ko.observable(false),
+            loadingInfo: ko.observable(false),
+            finishLoading: function() {
+                self.global.loading(false);
+                self.global.loadingInfo(false);
+            }
         },
         navigation: ko.observable(),
         navLogIn: ko.observable({
@@ -49,8 +64,21 @@ define(function() {
                             visible: ko.observable(false)
                         }
                     ])
+                },
+                {
+                    header: ko.observable('Administration'),
+                    items: ko.observableArray([
+                        {
+                            text: ko.observable('Benutzer'),
+                            dom: ko.observable('navUsers'),
+                            view: ko.observable('/myclub/views/startUp/users.html'),
+                            visible: ko.observable(true)
+                        }
+                    ])
                 }
             ])
         })
     };
+
+    return self;
 });

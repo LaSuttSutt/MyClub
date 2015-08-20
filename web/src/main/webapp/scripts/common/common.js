@@ -4,6 +4,7 @@
 define(function(require) {
 
     var localStoreHelper = require('../common/localStorageHelper');
+    var data = require('startUp/startUpViewData');
 
     var common = {
 
@@ -28,6 +29,45 @@ define(function(require) {
 
             document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
             localStoreHelper.setStyleColor(cssFile);
+        },
+        getTokenHeader: function() {
+            return {
+                userId: localStoreHelper.getUserId(),
+                tokenId: localStoreHelper.getTokenId()
+            };
+        },
+        handleAjaxErros: function() {
+
+            $(document).ajaxError(function (p1, error) {
+
+                switch (error.status) {
+
+                    case 404:
+                        data.global.finishLoading();
+                        data.global.setError('Keine Verbindung zum Server');
+                        break;
+
+                    case 401:
+                        data.global.finishLoading();
+                        window.location.reload();
+                        break;
+
+                    case 403:
+                        data.global.finishLoading();
+                        data.global.setError('Sie haben nicht die entsprechende Berechtigung');
+                        break;
+
+                    default:
+                        data.global.finishLoading();
+                        data.global.setError(error.statusText);
+                        break;
+                }
+            });
+
+            $(document).ajaxSuccess(function () {
+
+                data.global.error(false);
+            })
         }
     };
 

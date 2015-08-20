@@ -1,7 +1,9 @@
 /*
  Capsules all methods for navigation
  */
-define(function() {
+define(function(require) {
+
+    var mainData = require('startUp/startUpViewData');
 
     var self = {
 
@@ -13,6 +15,8 @@ define(function() {
             var contentDomInst = $('#' + contentDom);
             contentDomInst.empty();
             contentDomInst.load(view);
+
+            mainData.global.loading(true);
         }
     };
 

@@ -3,6 +3,7 @@
  */
 define(function(require) {
 
+
     var navigation = require('common/navigation');
 
     return function(params) {

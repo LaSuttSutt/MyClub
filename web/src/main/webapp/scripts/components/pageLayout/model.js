@@ -8,6 +8,7 @@ define(function(require) {
     return function(params) {
 
         this.authentication = mainData.authentication;
+        this.global = mainData.global;
         this.navigation = params.navigation;
         this.contentDom = params.contentDom;
         this.doInitialNavigation = params.doInitialNavigation;

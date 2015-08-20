@@ -29,8 +29,9 @@ public class UserApi {
     @GET
     @Path("/")
     @HasRole(User.UserRole.ADMIN)
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers() throws InterruptedException {
 
+        Thread.sleep(3000);
         return userLogic.getAllUsers();
     }
 
