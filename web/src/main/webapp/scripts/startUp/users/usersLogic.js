@@ -12,8 +12,6 @@ define(function(require) {
         // Loading
         loadAllUsers: function() {
 
-            mainData.global.loadingInfo(true);
-
             api.loadAllUsers().then(
                 function(loadedUsers) {
 
@@ -21,6 +19,14 @@ define(function(require) {
                     mainData.global.finishLoading();
                 }
             )
+        },
+
+        // CRUD
+        createUser: function() {
+
+            api.createUser().then(function(user) {
+                data.setManagedUser(user);
+            });
         }
     };
 });

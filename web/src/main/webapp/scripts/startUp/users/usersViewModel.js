@@ -10,7 +10,15 @@ define(function(require) {
 
         viewModel: function() {
 
-            this.data = data;
+            this.data = data.allUsersView;
+
+            this.manageUserDialogShow = function() {
+                $('#userName').focus();
+            };
+            this.manageUserDialogClose = function() {
+                logic.loadAllUsers();
+            };
+            this.createUser = logic.createUser;
         },
         initializeView: function() {
 
@@ -21,8 +29,17 @@ define(function(require) {
             var dom = $('#usersView')[0];
             ko.cleanNode(dom);
             ko.applyBindings(new self.viewModel(), dom);
+        },
+        registerComponents: function() {
+            ko.components.register('manageUserDialog', {
+                viewModel: { require: 'startUp/users/components/manageUserDialog/model' },
+                template: { require: '../js/text!startUp/users/components/manageUserDialog/view.html' }
+            });
         }
     };
+
+    // Components
+    self.registerComponents();
 
     return self;
 });

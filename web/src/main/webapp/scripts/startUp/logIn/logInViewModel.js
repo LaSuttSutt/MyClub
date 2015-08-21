@@ -1,7 +1,9 @@
 /*
  ViewModel for the logIn page
  */
-define(function() {
+define(function(require) {
+
+    var mainData = require('startUp/startUpViewData');
 
     var self = {
         viewModel: function() {
@@ -9,11 +11,13 @@ define(function() {
         },
         initializeView: function() {
 
+            // Loading
+            mainData.global.finishLoading();
+
             // Binding
             var dom = $('#logInPage')[0];
             ko.cleanNode(dom);
             ko.applyBindings(new self.viewModel(), dom);
-
         },
         registerComponents: function() {
             ko.components.register('logInControl', {

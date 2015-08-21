@@ -24,3 +24,39 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.tblHead {
+    background-color: whitesmoke;
+    min-height: 28px;
+    font-weight: bold;
+}
+
+.tblHeadItem {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-right: 1px solid gray;
+}
+
+.tblHeadButton {
+    padding-left: 5px;
+    padding-top: 4px;
+    padding-bottom: 3px;
+}
+
+.tblBody {
+    min-height: 28px;
+    border-top: 1px solid lightgray;
+}
+
+.tblBodyItem {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.tblBodyButton {
+    padding-left: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}

@@ -20,7 +20,7 @@ public class UserApi {
     //region #Declarations
 
     @Inject
-    private UserLogic userLogic;
+    private UserLogic logic;
 
     //endregion
 
@@ -29,10 +29,17 @@ public class UserApi {
     @GET
     @Path("/")
     @HasRole(User.UserRole.ADMIN)
-    public List<User> getAllUsers() throws InterruptedException {
+    public List<User> getAllUsers() {
 
-        Thread.sleep(3000);
-        return userLogic.getAllUsers();
+        return logic.getAllUsers();
+    }
+
+    @GET
+    @Path("/new")
+    @HasRole(User.UserRole.ADMIN)
+    public User createNewUser() {
+
+        return logic.createNewUser();
     }
 
     //endregion

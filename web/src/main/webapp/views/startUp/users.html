@@ -1,5 +1,63 @@
 <div id="usersView">
-    <h1 style="margin-top: 0">Benutzer</h1>
+
+    <!-- Tabellen-Kopf -->
+    <div id="tblHeader" class="col-md-12 tblHead" style="padding: 0">
+
+        <div id="nameHead" class="col-md-3 tblHeadItem">
+            <span>Name</span>
+        </div>
+
+        <div id="shortHead" class="col-md-1 tblHeadItem">
+            <span>Kürzel</span>
+        </div>
+
+        <div id="rolesHead" class="col-md-4 tblHeadItem">
+            <span>Rollen</span>
+        </div>
+
+        <div id="addUser" class="col-md-2 tblHeadButton">
+            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#manageUserDialog"
+                    data-bind="click: createUser">
+                <span class="glyphicon glyphicon-plus"></span>
+                <span>New</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Tabellen-Daten -->
+    <div id="tblBody" style="padding: 0" data-bind="foreach: data.allUsers">
+
+        <div class="row col-md-12 tblBody" style="padding: 0; margin-left: inherit">
+
+            <div id="nameBody" class="col-md-3 tblBodyItem">
+                <span data-bind="text: name"></span>
+            </div>
+
+            <div id="shortBody" class="col-md-1 tblBodyItem">
+                <span data-bind="text: shortName"></span>
+            </div>
+
+            <div id="rolesBody" class="col-md-4 tblBodyItem">
+                <span data-bind="text: roles"></span>
+            </div>
+
+            <div id="manageUser" class="col-md-2 tblBodyButton">
+                <button class="btn btn-default btn-xs">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button class="btn btn-danger btn-xs">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ManageUserDialog -->
+    <div data-bind="component: { name: 'modalDialog', params: { modalId:'manageUserDialog', title:'Benutzer',
+    body:'manageUserDialog', onShow:manageUserDialogShow, onClose:manageUserDialogClose } }"></div>
 
 </div>
 

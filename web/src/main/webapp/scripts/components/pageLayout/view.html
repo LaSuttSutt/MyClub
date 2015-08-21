@@ -40,7 +40,7 @@
 
         <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
 
-        <div data-bind="visible: global.loading && global.loadingInfo" style="display: none;">
+        <div data-bind="visible: (global.loading() == true && global.loadingInfo() == true)" style="display: none;">
             <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
             <label style="margin-left: 10px">laden...</label>
         </div>
@@ -49,7 +49,7 @@
              data-bind="component: { name:'errorInfo' }, visible: global.error"></div>
 
         <div data-bind="attr: { 'id': contentDom }, template: { afterRender: doInitialNavigation },
-                        visible: global.error() == false && global.loading() == false"
+                        visible: (global.error() == false && global.loading() == false)"
              style="display: none; height: calc(100% - 55px); height: -moz-calc(100% - 55px); padding: 0;">
         </div>
     </div>

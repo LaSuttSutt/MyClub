@@ -19,6 +19,20 @@ define(function(require) {
                     success: resolve
                 });
             });
+        },
+
+        // CRUD
+        createUser: function() {
+
+            return new Promise(function(resolve) {
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/myclub/api/user/new',
+                    headers: common.getTokenHeader(),
+                    success: resolve
+                })
+            });
         }
     };
 });

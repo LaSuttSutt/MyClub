@@ -23,6 +23,7 @@ public class UserLogic {
 
     //region #Public Methods
 
+    // Returns all users
     public List<User> getAllUsers() {
 
         List<User> result = dataAccessManager.getAllEntities(User.class);
@@ -35,6 +36,19 @@ public class UserLogic {
         Collections.sort(result, (o1, o2) -> o1.getName().compareTo(o2.getName()));
 
         return result;
+    }
+
+    // Creates and returns a new user
+    public User createNewUser() {
+
+        User user = new User();
+
+        user.setName("test");
+        List<User.UserRole> roles = new ArrayList<>();
+        roles.add(User.UserRole.ClubManagement);
+        user.setRoles(roles);
+
+        return user;
     }
 
     // Returns the user with the given name or shortName

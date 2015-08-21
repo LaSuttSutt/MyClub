@@ -1,0 +1,66 @@
+<!-- Body für den modalen Dialog -->
+<div class="row">
+    <div class="col-md-6 form-group-sm">
+        <label for="userName">
+            <span>Name</span>
+        </label>
+        <input id="userName" class="form-control" type="text" data-bind="value: data.name">
+    </div>
+    <div class="col-md-6 form-group-sm">
+        <label for="userShortName">
+            <span>Kürzel</span>
+        </label>
+        <input id="userShortName" class="form-control" type="text">
+    </div>
+</div>
+<div class="row" style="margin-top: 15px;">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12 form-group-sm">
+                <label for="userMail">
+                    <span>EMail</span>
+                </label>
+                <input id="userMail" class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 15px;">
+            <div class="col-md-12 form-group-sm">
+                <label for="password">
+                    <span>Passwort</span>
+                </label>
+                <input id="password" class="form-control" type="password">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12 form-group-sm">
+                <label for="userRoles">
+                    <span>Rollen</span>
+                </label>
+                <div class="checkbox" id="userRoles" style="margin-top: 0">
+                    <div>
+                        <label>
+                            <input type="checkbox">ADMIN
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox">Verwaltung
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox">Trainer
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox">Spieler
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
