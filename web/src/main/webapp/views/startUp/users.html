@@ -16,7 +16,7 @@
         </div>
 
         <div id="addUser" class="col-md-2 tblHeadButton">
-            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#manageUserDialog"
+            <button id="btnAddUser" class="btn btn-default btn-xs" data-toggle="modal" data-target="#manageUserDialog"
                     data-bind="click: createUser">
                 <span class="glyphicon glyphicon-plus"></span>
                 <span>New</span>
@@ -43,10 +43,13 @@
             </div>
 
             <div id="manageUser" class="col-md-2 tblBodyButton">
-                <button class="btn btn-default btn-xs">
+                <button id="btnEditUser" class="btn btn-default btn-xs" data-bind="click: $parent.editUser"
+                        data-toggle="modal" data-target="#manageUserDialog">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </button>
-                <button class="btn btn-danger btn-xs">
+                <button id="btnDeleteUser" class="btn btn-danger btn-xs"
+                        data-bind="click: $parent.confirmDelete, visible: (shortName != 'admin')"
+                        data-toggle="modal" data-target="#confirmDeleteUser">
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
             </div>
@@ -56,8 +59,22 @@
     </div>
 
     <!-- ManageUserDialog -->
-    <div data-bind="component: { name: 'modalDialog', params: { modalId:'manageUserDialog', title:'Benutzer',
-    body:'manageUserDialog', onShow:manageUserDialogShow, onClose:manageUserDialogClose } }"></div>
+    <div data-bind="component: { name: 'modalDialog', params: {
+        modalId: 'manageUserDialog',
+        title: 'Benutzer',
+        body: 'manageUserDialog',
+        onShow: manageUserDialogShow,
+        onClose: manageUserDialogClose,
+        btnCloseId: btnCloseId,
+        onSave: validateUser } }"></div>
+
+    <!-- ConfirmDelete -->
+    <div data-bind="component: { name: 'confirmDelete', params: {
+        modalId: 'confirmDeleteUser',
+        message: data.confirmDeleteMessage,
+        onConfirm: deleteUser,
+        btnCloseId: 'btnCloseConfirmDeleteUser',
+        onClose: manageUserDialogClose } }"></div>
 
 </div>
 

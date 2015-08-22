@@ -19,7 +19,7 @@
                 </div>
                 <div id="userInfo" class="col-md-4" align="right" data-bind="visible: authentication.loggedIn">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
                                 aria-expanded="false"
                                 style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"
@@ -27,9 +27,12 @@
                             <a style="text-decoration: none; color: #080808; padding-right: 10px">Sven Sutter</a>
                             <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu" role="menu" style="padding: 3px">
-                            <li>
+                        <ul class="dropdown-menu">
+                            <li class="small">
                                 <a href="#">Test</a>
+                            </li>
+                            <li class="small">
+                                <a href="#">Test2</a>
                             </li>
                         </ul>
                     </div>
@@ -38,7 +41,7 @@
 
         </div>
 
-        <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
+        <hr class="devider" style="margin-top: 12px; margin-bottom: 10px">
 
         <div data-bind="visible: (global.loading() == true && global.loadingInfo() == true)" style="display: none;">
             <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>

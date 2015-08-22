@@ -3,8 +3,6 @@ package de.itpuzzles.myclub.domainmodel.users;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.beans.Transient;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +21,7 @@ public class User {
     private String password;
 
     @javax.persistence.Transient
-    private List<UserRole> roles;
+    private List<String> roles;
 
     //endregion
 
@@ -31,7 +29,7 @@ public class User {
 
     public User() { this.setId(UUID.randomUUID()); }
 
-    public User(String name, String shortName, String email, String passwordHash, List<UserRole> roles) {
+    public User(String name, String shortName, String email, String passwordHash, List<String> roles) {
 
         this.setId(UUID.randomUUID());
         this.setName(name);
@@ -39,30 +37,6 @@ public class User {
         this.setEmail(email);
         this.setPassword(passwordHash);
         this.setRoles(roles);
-    }
-
-    //endregion
-
-    //region #Overrides
-
-    @Override
-    public String toString() {
-
-        List<String> result = new ArrayList<>();
-
-        result.add("ID: " + this.getId());
-        result.add("Name: " + this.getName());
-        result.add("Kurzname: " + this.getShortName());
-        result.add("Email: " + this.getEmail());
-        result.add("PWD-Hash: " + this.getPassword());
-
-        List<String> roles = new ArrayList<>();
-        for (UserRole role : this.getRoles()) {
-            roles.add("[" + role.getValue() + "]" + role.name());
-        }
-        result.add("Rollen: (" + String.join(",", roles) + ")");
-
-        return String.join("|", result);
     }
 
     //endregion
@@ -104,10 +78,10 @@ public class User {
         this.password = password;
     }
 
-    public List<UserRole> getRoles() {
+    public List<String> getRoles() {
         return roles;
     }
-    public void setRoles(List<UserRole> roles) {
+    public void setRoles(List<String> roles) {
         this.roles = roles;
     }
 
@@ -116,14 +90,22 @@ public class User {
     //region #Enumerations
 
     public enum UserRole {
-        ADMIN(0),
-        ClubManagement(1),
-        Coach(2),
-        Player(3);
+        ADMIN(0, "Administrator"),
+        ClubManagement(1, "Verwaltung"),
+        Coach(2, "Trainer"),
+        Player(3, "Spieler");
 
         private final int userRole;
-        UserRole(int role) { this.userRole = role; }
+        private final String name;
+
+        UserRole(int role, String name)
+        {
+            this.userRole = role;
+            this.name = name;
+        }
+
         public int getValue() { return this.userRole; }
+        public String getName() { return this.name; }
     }
 
     //endregion

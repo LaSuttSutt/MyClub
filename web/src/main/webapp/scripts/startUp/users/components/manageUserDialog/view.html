@@ -1,65 +1,62 @@
 <!-- Body für den modalen Dialog -->
 <div class="row">
-    <div class="col-md-6 form-group-sm">
+    <div id="namePart" class="col-md-6 form-group-sm">
         <label for="userName">
             <span>Name</span>
         </label>
         <input id="userName" class="form-control" type="text" data-bind="value: data.name">
+
+        <div data-bind="component: { name: 'validationInfo', params: { field: data.nameValidation } }"></div>
     </div>
-    <div class="col-md-6 form-group-sm">
+    <div id="shortNamePart" class="col-md-6 form-group-sm">
         <label for="userShortName">
             <span>Kürzel</span>
         </label>
-        <input id="userShortName" class="form-control" type="text">
+        <input id="userShortName" class="form-control" type="text" data-bind="value: data.shortName">
+
+        <div data-bind="component: { name: 'validationInfo', params: { field: data.shortNameValidation } }"></div>
     </div>
 </div>
 <div class="row" style="margin-top: 15px;">
-    <div class="col-md-6">
+    <div id="emailAndPasswordPart" class="col-md-6">
         <div class="row">
-            <div class="col-md-12 form-group-sm">
+            <div id="emailPart" class="col-md-12 form-group-sm">
                 <label for="userMail">
                     <span>EMail</span>
                 </label>
-                <input id="userMail" class="form-control" type="text">
+                <input id="userMail" class="form-control" type="text" data-bind="value: data.email">
+
+                <div data-bind="component: { name: 'validationInfo', params: { field: data.emailValidation } }"></div>
             </div>
         </div>
-        <div class="row" style="margin-top: 15px;">
-            <div class="col-md-12 form-group-sm">
+        <div class="row" style="margin-top: 15px;" data-bind="visible: data.isNewUser">
+            <div id="passwordPart" class="col-md-12 form-group-sm">
                 <label for="password">
                     <span>Passwort</span>
                 </label>
-                <input id="password" class="form-control" type="password">
+                <input id="password" class="form-control" type="password" data-bind="value: data.password">
+
+                <div data-bind="component: { name: 'validationInfo', params: { field: data.passwordValidation } }"></div>
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div id="rolesPart" class="col-md-6">
         <div class="row">
             <div class="col-md-12 form-group-sm">
                 <label for="userRoles">
                     <span>Rollen</span>
                 </label>
-                <div class="checkbox" id="userRoles" style="margin-top: 0">
+
+                <div class="checkbox" id="userRoles" style="margin-top: 0" data-bind="foreach: data.allRoles">
                     <div>
                         <label>
-                            <input type="checkbox">ADMIN
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input type="checkbox">Verwaltung
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input type="checkbox">Trainer
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input type="checkbox">Spieler
+                            <input type="checkbox" data-bind="checked: $.inArray($data, $parent.data.roles()) > -1,
+                            click: $parent.rolesCheckedChange">
+                            <span data-bind="text: $data"></span>
                         </label>
                     </div>
                 </div>
+                <div data-bind="component: { name: 'validationInfo', params: { field: data.rolesValidation } }"></div>
             </div>
         </div>
     </div>

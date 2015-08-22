@@ -52,6 +52,15 @@ public class DataAccessManager implements IDataAccessManager {
     }
 
     @TransactionAttribute
+    public void deleteEntites(String givenQuery, Map<String, String> queryParameters) {
+
+        Query query = entityManager.createQuery(givenQuery);
+        queryParameters.forEach(query::setParameter);
+
+        query.executeUpdate();
+    }
+
+    @TransactionAttribute
     public <T> void deleteAllEntities(Class<T> typeClass) {
 
         Query query = entityManager.createQuery("DELETE FROM " + typeClass.getSimpleName());

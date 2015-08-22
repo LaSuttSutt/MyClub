@@ -51,10 +51,10 @@ public class HasRoleInterceptor {
         authenticationLogic.checkAuthentication(UUID.fromString(tokenId), UUID.fromString(tokenUser));
 
         // check roles
-        List<User.UserRole> userRoles = userLogic.loadRolesForUser(UUID.fromString(tokenUser));
+        List<String> userRoles = userLogic.loadRolesForUser(UUID.fromString(tokenUser));
         User.UserRole[] roles = context.getMethod().getAnnotation(HasRole.class).value();
         for (User.UserRole role : roles) {
-            if (userRoles.contains(role))
+            if (userRoles.contains(role.getName()))
                 return context.proceed();
         }
 

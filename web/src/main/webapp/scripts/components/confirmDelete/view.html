@@ -1,0 +1,27 @@
+<!-- Modal Dialog -->
+<div class="modal fade" role="dialog" data-bind="event: { 'hidden.bs.modal':onClose }, attr: { 'id': modalId }">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header"
+                 style="padding: 5px; background-color: whitesmoke; border-top-left-radius: 5px; border-top-right-radius: 5px;">
+                <div class="row">
+                    <div class="col-md-1">
+                        <img src="/myclub/images/TUS.png" style="width: 40px; height: 40px">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <span data-bind="text: message"></span>
+            </div>
+            <div class="modal-footer"
+                 style="background-color: whitesmoke; padding: 10px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+                <button class="btn btn-default btn-sm" data-dismiss="modal" data-bind="attr: { 'id': btnCloseId }">
+                    <span>Abbrechen</span>
+                </button>
+                <button class="btn btn-danger btn-sm" data-bind="click: onConfirm">
+                    <span>Löschen</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

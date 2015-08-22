@@ -22,6 +22,9 @@ public interface IDataAccessManager {
     // Deletes the object with the given id of the given type
     <T> void deleteEntityById(Class<T> typeClass, UUID id);
 
+    // Deletes all stored objects of the given type that matches the given query
+    void deleteEntites(String givenQuery, Map<String, String> queryParameters);
+
     // Deletes all stored objects of the given type
     <T> void deleteAllEntities(Class<T> typeClass);
 

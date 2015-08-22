@@ -13,12 +13,18 @@ define(function(require) {
             this.data = data.allUsersView;
 
             this.manageUserDialogShow = function() {
-                $('#userName').focus();
+                $('#userName').select();
             };
             this.manageUserDialogClose = function() {
+
                 logic.loadAllUsers();
             };
             this.createUser = logic.createUser;
+            this.editUser = logic.editUser;
+            this.confirmDelete = logic.confirmDelete;
+            this.deleteUser = logic.deleteUser;
+            this.validateUser = logic.validateUser;
+            this.btnCloseId = logic.closeManageUserDialogId();
         },
         initializeView: function() {
 
@@ -31,6 +37,7 @@ define(function(require) {
             ko.applyBindings(new self.viewModel(), dom);
         },
         registerComponents: function() {
+
             ko.components.register('manageUserDialog', {
                 viewModel: { require: 'startUp/users/components/manageUserDialog/model' },
                 template: { require: '../js/text!startUp/users/components/manageUserDialog/view.html' }

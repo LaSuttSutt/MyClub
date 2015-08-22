@@ -1,16 +1,14 @@
 /*
- ViewModel for the modalDialog component
+ ViewModel for the confirmDelete component
  */
 define(function() {
 
     return function(params) {
 
         this.modalId = params.modalId;
-        this.title = params.title;
-        this.body = params.body;
+        this.message = params.message;
+        this.onConfirm = params.onConfirm;
         this.btnCloseId = params.btnCloseId;
-        this.onSave = params.onSave;
-        this.onShow = params.onShow;
         this.onClose = params.onClose;
     };
 });
