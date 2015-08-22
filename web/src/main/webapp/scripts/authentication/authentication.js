@@ -43,7 +43,7 @@ define(function (require) {
             });
         },
 
-        // LogIn
+        // LogIn/LogOut
         logIn: function() {
 
             return new Promise(function(resolve, reject) {
@@ -87,6 +87,16 @@ define(function (require) {
                 }
             });
         },
+        logOut: function() {
+
+            var tokenUserData = self.getTokenAndUser();
+            api.logOut(tokenUserData.userId, tokenUserData.tokenId).then(
+                function() {
+                    self.deleteStoredUserData();
+                    window.location = "/myclub/index.html";
+                }
+            );
+        },
 
         // Helper
         getTokenAndUser: function() {
@@ -104,6 +114,10 @@ define(function (require) {
             };
         },
         storeUserData: function(user) {
+
+            data.user.id(user.id);
+            data.user.name(user.name);
+            data.user.roles(user.roles);
 
             localStorageHelper.setUserId(user.id);
             localStorageHelper.setUserName(user.name);

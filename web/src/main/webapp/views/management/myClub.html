@@ -9,3 +9,9 @@
     common.reloadStyleColor('/myclub/css/styleBlue.css')
     });">blue</button>
 </div>
+
+<script>
+    require(['startUp/startUpViewData'], function(data) {
+        data.global.finishLoading();
+    });
+</script>

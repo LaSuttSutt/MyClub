@@ -13,6 +13,8 @@ define(function(require) {
         this.logIn = function() {
             authentication.logIn().then(function() {
                 logic.setModulesMenu();
+            }, function() {
+
             });
         };
     };

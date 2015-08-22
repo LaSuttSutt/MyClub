@@ -4,6 +4,7 @@
 define(function(require) {
 
     var data = require('startUp/users/usersViewData');
+    var mainData = require('startUp/startUpViewData');
     var logic = require('startUp/users/usersLogic');
 
     var self = {
@@ -11,6 +12,7 @@ define(function(require) {
         viewModel: function() {
 
             this.data = data.allUsersView;
+            this.userData = mainData.user;
 
             this.manageUserDialogShow = function() {
                 $('#userName').select();

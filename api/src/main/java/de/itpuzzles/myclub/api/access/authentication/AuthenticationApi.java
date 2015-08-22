@@ -19,7 +19,7 @@ public class AuthenticationApi {
     //region #Declarations
 
     @Inject
-    private AuthenticationLogic authenticationLogic;
+    private AuthenticationLogic logic;
 
     //endregion
 
@@ -29,14 +29,21 @@ public class AuthenticationApi {
     @Path("/check")
     public User checkAuthentication(@FormParam("tokenId") UUID tokenId, @FormParam("userId") UUID userId) {
 
-        return authenticationLogic.checkAuthentication(tokenId, userId);
+        return logic.checkAuthentication(tokenId, userId);
     }
 
     @POST
     @Path("/logIn")
     public LogInResult logIn(@FormParam("userName") String userName, @FormParam("password") String password) {
 
-        return authenticationLogic.logIn(userName, password);
+        return logic.logIn(userName, password);
+    }
+
+    @POST
+    @Path("/logOut")
+    public void logOut(@FormParam("userId") UUID userId, @FormParam("tokenId") UUID tokenId) {
+
+        logic.logOut(userId, tokenId);
     }
 
     //endregion

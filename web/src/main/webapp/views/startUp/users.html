@@ -15,11 +15,11 @@
             <span>Rollen</span>
         </div>
 
-        <div id="addUser" class="col-md-2 tblHeadButton">
+        <div id="addUser" class="col-md-1 tblHeadButton">
             <button id="btnAddUser" class="btn btn-default btn-xs" data-toggle="modal" data-target="#manageUserDialog"
-                    data-bind="click: createUser">
+                    data-bind="click: createUser" style="min-width: 52px">
                 <span class="glyphicon glyphicon-plus"></span>
-                <span>New</span>
+                <span>Neu</span>
             </button>
         </div>
 
@@ -42,18 +42,21 @@
                 <span data-bind="text: roles"></span>
             </div>
 
-            <div id="manageUser" class="col-md-2 tblBodyButton">
+            <div id="manageUser" class="col-md-1 tblBodyButton" style="display: flex">
                 <button id="btnEditUser" class="btn btn-default btn-xs" data-bind="click: $parent.editUser"
                         data-toggle="modal" data-target="#manageUserDialog">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </button>
-                <button id="btnDeleteUser" class="btn btn-danger btn-xs"
-                        data-bind="click: $parent.confirmDelete, visible: (shortName != 'admin')"
+                <button id="btnDeleteUser" class="btn btn-danger btn-xs" style="margin-left: 3px"
+                        data-bind="click: $parent.confirmDelete, visible: ((shortName != 'admin') && (name != $parent.userData.name()))"
                         data-toggle="modal" data-target="#confirmDeleteUser">
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
+                <div>
+                <span class="glyphicon glyphicon-user" style="margin-left: 7px; margin-top: 3px;"
+                      data-bind="visible: (name == $parent.userData.name())"></span>
+                </div>
             </div>
-
         </div>
 
     </div>

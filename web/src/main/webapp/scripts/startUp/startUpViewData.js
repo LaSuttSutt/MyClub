@@ -15,7 +15,9 @@ define(function() {
             focus: ko.observable(false)
         },
         user: {
-            userId: ko.observable('')
+            id: ko.observable(''),
+            name: ko.observable(''),
+            roles: ko.observableArray()
         },
         global: {
             error: ko.observable(false),

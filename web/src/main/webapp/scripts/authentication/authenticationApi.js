@@ -35,6 +35,21 @@ define(function() {
                     }
                 });
             });
+        },
+        logOut: function(userId, tokenId) {
+
+            return new Promise(function(resolve) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/myclub/api/authentication/logOut',
+                    success: resolve,
+                    data: {
+                        userId: userId,
+                        tokenId: tokenId
+                    }
+                });
+            })
         }
     };
 });

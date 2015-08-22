@@ -1,17 +1,17 @@
 .nav-pills > li.active a {
-    background-color: navy;
+    background-color: #337ab7;
 }
 
 .nav-pills > li.active a:hover {
-    background-color: navy;
+    background-color: #337ab7;
 }
 
 .nav-pills > li.active a:focus {
-    background-color: navy;
+    background-color: #337ab7;
 }
 
 .nav-pills > li a {
-    color: navy;
+    color: #337ab7;
 }
 
 .navigation > h5 {
@@ -20,5 +20,5 @@
 }
 
 .clubColor {
-    color: navy;
+    color: #337ab7;
 }

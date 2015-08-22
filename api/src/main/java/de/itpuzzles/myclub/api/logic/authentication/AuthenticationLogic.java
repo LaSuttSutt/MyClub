@@ -6,11 +6,11 @@ import de.itpuzzles.myclub.domainmodel.authentication.LogInResult;
 import de.itpuzzles.myclub.domainmodel.authentication.Token;
 import de.itpuzzles.myclub.domainmodel.users.User;
 import de.itpuzzles.myclub.domainmodel.validation.ValidationError;
-import org.joda.time.DateTime;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.NotAuthorizedException;
+import javax.ws.rs.NotFoundException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -59,6 +59,21 @@ public class AuthenticationLogic {
         }
 
         return new LogInResult(this.createAndStoreUserToken(user), user);
+    }
+
+    public void logOut(UUID userId, UUID tokenId) {
+
+        String query = "SELECT t FROM Token t WHERE t.id = :tokenId AND t.fkUserId = :userId";
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("tokenId", tokenId.toString());
+        parameters.put("userId", userId.toString());
+
+        List<Token> tokens = dataAccessManager.getEntities(Token.class, query, parameters);
+
+        if (tokens == null || tokens.size() != 1)
+            throw new NotFoundException("Token konnte nicht gefunden werden");
+
+        dataAccessManager.delete(tokens.get(0));
     }
 
     public User checkAuthentication(UUID tokenId, UUID userId) {
