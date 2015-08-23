@@ -1,7 +1,33 @@
-<h1>Test</h1>
+<div id="modulesView">
+
+    <div class="tblHead">
+        <div class="col-md-12" style="padding: 5px 5px 5px 10px">
+            <span>Module</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <button class="btn btn-default btn-sm" style="min-width: 200px; margin-top: 10px"
+                    data-bind="click: navigateToManagement">
+                <span class="clubColor">Verwaltung</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <button class="btn btn-default btn-sm" style="min-width: 200px; margin-top: 10px"
+                    data-bind="click: navigateToCoach">
+                <span class="clubColor">Trainer</span>
+            </button>
+        </div>
+    </div>
+
+</div>
 
 <script>
-    require(['startUp/startUpViewData'], function(data) {
-        data.global.finishLoading();
+    require(['startUp/modules/modulesViewModel'], function(viewModel) {
+        viewModel.initializeView();
     });
 </script>

@@ -3,6 +3,14 @@
  */
 define(function() {
 
+    var userData = {
+
+        id: ko.observable(''),
+        name: ko.observable(''),
+        roles: ko.observableArray(),
+        isAdmin: ko.observable(false)
+    };
+
     var self = {
 
         authentication: {
@@ -14,11 +22,7 @@ define(function() {
             passwordValidation: ko.observable(''),
             focus: ko.observable(false)
         },
-        user: {
-            id: ko.observable(''),
-            name: ko.observable(''),
-            roles: ko.observableArray()
-        },
+        user: userData,
         global: {
             error: ko.observable(false),
             errorMessage: ko.observable(''),
@@ -41,6 +45,7 @@ define(function() {
             menuGroups: ko.observableArray([
                 {
                     header: ko.observable('Anmelden'),
+                    visible: ko.observable(true),
                     items: ko.observableArray([
                         {
                             text: ko.observable('Anmelden'),
@@ -57,18 +62,20 @@ define(function() {
             contentDom: ko.observable('startUpContent'),
             menuGroups: ko.observableArray([
                 {
-                    header: ko.observable('Module'),
+                    header: ko.observable('Haupt-Menü'),
+                    visible: ko.observable(true),
                     items: ko.observableArray([
                         {
-                            text: ko.observable('Verwaltung'),
+                            text: ko.observable('Module'),
                             dom: ko.observable('navManagement'),
                             view: ko.observable('/myclub/views/startUp/modules.html'),
-                            visible: ko.observable(false)
+                            visible: ko.observable(true)
                         }
                     ])
                 },
                 {
                     header: ko.observable('Administration'),
+                    visible: userData.isAdmin,
                     items: ko.observableArray([
                         {
                             text: ko.observable('Benutzer'),

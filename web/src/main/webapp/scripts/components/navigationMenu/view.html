@@ -1,7 +1,7 @@
 <div class="navigation" data-bind="foreach: data().menuGroups()">
-    <hr class="devider" style="margin-top: 10px; margin-bottom: 10px">
-    <h5 data-bind="text: header"></h5>
-    <ul class="nav nav-pills nav-stacked" data-bind="foreach: items()">
+    <hr class="devider" data-bind="visible: visible" style="margin-top: 10px; margin-bottom: 10px">
+    <h5 data-bind="text: header, visible: visible"></h5>
+    <ul class="nav nav-pills nav-stacked" data-bind="foreach: items(), visible: visible">
         <li role="presentation" data-bind="css: { 'active': $parents[1].currentNavItem() == dom() },
         visible: visible">
             <a data-bind="click: $parents[1].navigate" href="#"

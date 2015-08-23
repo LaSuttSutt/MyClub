@@ -119,6 +119,8 @@ define(function (require) {
             data.user.name(user.name);
             data.user.roles(user.roles);
 
+            data.user.isAdmin($.inArray('Administrator', user.roles) > -1);
+
             localStorageHelper.setUserId(user.id);
             localStorageHelper.setUserName(user.name);
             localStorageHelper.setUserRoles(user.roles);
