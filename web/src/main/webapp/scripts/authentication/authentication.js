@@ -120,6 +120,9 @@ define(function (require) {
             data.user.roles(user.roles);
 
             data.user.isAdmin($.inArray('Administrator', user.roles) > -1);
+            data.user.isManagement($.inArray('Verwaltung', user.roles) > -1);
+            data.user.isCoach($.inArray('Trainer', user.roles) > -1);
+            data.user.isPlayer($.inArray('Spieler', user.roles) > -1);
 
             localStorageHelper.setUserId(user.id);
             localStorageHelper.setUserName(user.name);

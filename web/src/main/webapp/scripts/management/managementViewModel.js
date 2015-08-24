@@ -5,6 +5,7 @@ define(function(require) {
 
     var data = require('management/managementViewData');
     var navigation = require('common/navigation');
+    var mainData = require('startUp/startUpViewData');
 
     var self = {
 
@@ -23,6 +24,11 @@ define(function(require) {
             };
         },
         initializeView: function() {
+
+            // check Management-Role
+            if (mainData.user.isManagement() == false) {
+                mainData.global.setError('Sie haben keine Berechtigung für diese Modul');
+            }
 
             // Binding
             var dom = $('#mainPage')[0];

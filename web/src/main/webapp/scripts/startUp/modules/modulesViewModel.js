@@ -10,11 +10,16 @@ define(function(require) {
 
         viewModel: function() {
 
+            this.data = mainData;
+
             this.navigateToManagement = function() {
                 logic.navigateToModule('/myclub/pages/management.html');
             };
             this.navigateToCoach = function() {
-                //logic.navigateToModule('Hallo');
+
+            };
+            this.navigateToPlayer = function() {
+
             };
         },
         initializeView: function() {

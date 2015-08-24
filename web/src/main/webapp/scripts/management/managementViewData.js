@@ -1,7 +1,9 @@
 /*
  Capsules all data for the management page
  */
-define(function () {
+define(function (require) {
+
+    var mainData = require('startUp/startUpViewData');
 
     return {
         navigation: ko.observable({
@@ -10,7 +12,7 @@ define(function () {
             menuGroups: ko.observableArray([
                 {
                     header: ko.observable('Haupt-Menü'),
-                    visible: ko.observable(true),
+                    visible: mainData.user.isManagement,
                     items: ko.observableArray([
                         {
                             text: ko.observable('Home'),
@@ -28,7 +30,7 @@ define(function () {
                 },
                 {
                     header: ko.observable('Administration'),
-                    visible: ko.observable(true),
+                    visible: mainData.user.isManagement,
                     items: ko.observableArray([
                         {
                             text: ko.observable('Mein Verein'),

@@ -8,6 +8,8 @@ define(function(require) {
 
     return function(params) {
 
+        this.isIndexPage = (window.location.pathname == '/myclub/index.html');
+
         this.authentication = mainData.authentication;
         this.global = mainData.global;
         this.user = mainData.user;

@@ -8,7 +8,10 @@ define(function() {
         id: ko.observable(''),
         name: ko.observable(''),
         roles: ko.observableArray(),
-        isAdmin: ko.observable(false)
+        isAdmin: ko.observable(false),
+        isManagement: ko.observable(false),
+        isCoach: ko.observable(false),
+        isPlayer: ko.observable(false)
     };
 
     var self = {

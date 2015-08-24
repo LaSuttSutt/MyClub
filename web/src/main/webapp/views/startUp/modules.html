@@ -1,33 +1,78 @@
 <div id="modulesView">
 
-    <div class="tblHead">
-        <div class="col-md-12" style="padding: 5px 5px 5px 10px">
-            <span>Module</span>
+    <div class="row" style="margin: inherit">
+        <div class="tblHead">
+            <div class="col-md-12" style="padding: 5px 5px 5px 10px">
+                <span>Module</span>
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <button class="btn btn-default btn-sm" style="min-width: 200px; margin-top: 10px"
-                    data-bind="click: navigateToManagement">
-                <span class="clubColor">Verwaltung</span>
-            </button>
+    <div class="row" style="margin: inherit">
+        <div style="float: left">
+            <div style="margin-left: 10px; display: inline-block; vertical-align: bottom; min-width: 500px">
+                <h3 class="clubColor">Verwaltung</h3>
+                <div>Mitglieder-Verwaltung</div>
+                <div>Vereinsinformationen wie Name, Logo, Mannschaften, Spieler, etc.</div>
+                <div>Verwalten der Plätze und Kabinen, inklusive Belegung</div>
+                <div>Vereins-Kalender für Spiele, Veranstaltungen, Sitzungen</div>
+            </div>
+            <div style="margin-left: 10px; display: inline-block; vertical-align: bottom"
+                 data-bind="visible: data.user.isManagement">
+                <button class="btn btn-default btn-sm" data-bind="click: navigateToManagement">
+                    <span class="glyphicon glyphicon-forward clubColor"></span>
+                    <span>Öffnen</span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <button class="btn btn-default btn-sm" style="min-width: 200px; margin-top: 10px"
-                    data-bind="click: navigateToCoach">
-                <span class="clubColor">Trainer</span>
-            </button>
+    <hr class="devider" style="margin-top: 15px; margin-bottom: 0">
+
+    <div class="row" style="margin: inherit">
+        <div style="float: left">
+            <div style="margin-left: 10px; display: inline-block; vertical-align: bottom; min-width: 500px">
+                <h3 class="clubColor" style="margin-top: 10px">Trainer</h3>
+                <div>Übersicht Mannschaft und Spieler</div>
+                <div>Trainingsbeteiligung, Einsätze, Leistung</div>
+                <div>Gegner-Beobachtungen, Ergebnisse, Form</div>
+                <div>Team-Kalender für Training, Spiele, Veranstaltungen</div>
+            </div>
+            <div style="margin-left: 10px; display: inline-block; vertical-align: bottom"
+                 data-bind="visible: data.user.isCoach">
+                <button class="btn btn-default btn-sm" data-bind="click: navigateToCoach">
+                    <span class="glyphicon glyphicon-forward clubColor"></span>
+                    <span>Öffnen</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <hr class="devider" style="margin-top: 15px; margin-bottom: 0">
+
+    <div class="row" style="margin: inherit">
+        <div style="float: left">
+            <div style="margin-left: 10px; display: inline-block; vertical-align: bottom; min-width: 500px">
+                <h3 class="clubColor" style="margin-top: 10px">Spieler</h3>
+                <div>Daten wie Adresse, Telefon, Mail</div>
+                <div>Persönlicher Kalender für Training, Spiele, Veranstaltungen</div>
+                <div>Statistiken wie Spiele, Tore, Einsätze, Trainings-Beteiligung</div>
+                <div>Einfaches Zu-/Absagen zu Terminen</div>
+            </div>
+            <div style="margin-left: 10px; display: inline-block; vertical-align: bottom"
+                 data-bind="visible: data.user.isPlayer">
+                <button class="btn btn-default btn-sm" data-bind="click: navigateToPlayer">
+                    <span class="glyphicon glyphicon-forward clubColor"></span>
+                    <span>Öffnen</span>
+                </button>
+            </div>
         </div>
     </div>
 
 </div>
 
 <script>
-    require(['startUp/modules/modulesViewModel'], function(viewModel) {
+    require(['startUp/modules/modulesViewModel'], function (viewModel) {
         viewModel.initializeView();
     });
 </script>

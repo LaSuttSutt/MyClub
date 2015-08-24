@@ -6,6 +6,19 @@
         </div>
         <div id="navigation" data-bind="component: { name:'navigationMenu', params: { data: navigation } }">
         </div>
+
+        <hr class="devider" style="margin-top: 10px; margin-bottom: 10px" data-bind="visible: isIndexPage == false">
+
+        <ul class="nav nav-pills nav-stacked" data-bind="visible: isIndexPage == false">
+            <li role="presentation">
+                <a href="/myclub/index.html"
+                   style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+                    <span style="color: dimgray" class="glyphicon glyphicon-home"></span>
+                    <span style="margin-left: 3px">Startseite</span>
+                </a>
+            </li>
+        </ul>
+
     </div>
 
     <div id="mainPart" class="col-md-10"
