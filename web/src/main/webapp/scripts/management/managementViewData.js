@@ -15,12 +15,6 @@ define(function (require) {
                     visible: mainData.user.isManagement,
                     items: ko.observableArray([
                         {
-                            text: ko.observable('Home'),
-                            dom: ko.observable('navHome'),
-                            view: ko.observable('/myclub/views/management/home.html'),
-                            visible: ko.observable(true)
-                        },
-                        {
                             text: ko.observable('Vereins-Mitglieder'),
                             dom: ko.observable('navMembers'),
                             view: ko.observable('/myclub/views/management/members.html'),
@@ -29,7 +23,7 @@ define(function (require) {
                     ])
                 },
                 {
-                    header: ko.observable('Administration'),
+                    header: ko.observable('Einstellungen'),
                     visible: mainData.user.isManagement,
                     items: ko.observableArray([
                         {
