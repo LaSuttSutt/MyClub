@@ -1,0 +1,18 @@
+<div class="row" data-bind="visible: (editMode() == false), event: { mouseover: startHover, mouseout: endHover }" style="margin: inherit">
+    <span class="small" data-bind="text: text" style="margin-left: 2px"></span>
+    <button class="btn btn-default btn-xs" data-bind="click: startEditMode, visible: textHover" style="margin-left: 10px">
+        <span class="glyphicon glyphicon-pencil"></span>
+    </button>
+</div>
+
+<div class="input-group input-group-sm" data-bind="visible: editMode">
+    <input id="clubName" type="text" class="form-control" data-bind="value: text, hasFocus: inputFocus, valueUpdate: 'afterkeydown', event: { 'keyup': inputKeyUp }">
+    <span class="input-group-btn">
+        <button class="btn btn-default btn" type="button" data-bind="click: commitEditMode">
+            <span class="glyphicon glyphicon-ok" style="color: green"></span>
+        </button>
+        <button class="btn btn-default btn" type="button" data-bind="click: cancelEditMode">
+            <span class="glyphicon glyphicon-remove" style="color: darkred"></span>
+        </button>
+    </span>
+</div>

@@ -12,7 +12,7 @@ define(function(require) {
 
             var color = localStoreHelper.getStyleColor();
             if (color == null) {
-                color = '/myclub/css/styleRed.css';
+                color = '/club/css/styleRed.css';
                 localStoreHelper.setStyleColor(color);
             }
 

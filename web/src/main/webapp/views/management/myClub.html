@@ -1,17 +1,29 @@
-<div style="margin: 0; padding: 0;">
-    <h1 style="margin:0">Mein Verein</h1>
-</div>
-<div>
-    <button class="btn btn-default" onclick="var common = require(['common/common'], function(common) {
-    common.reloadStyleColor('/myclub/css/styleRed.css');
-    });">red</button>
-    <button onclick="var common = require(['common/common'], function(common) {
-    common.reloadStyleColor('/myclub/css/styleBlue.css')
-    });">blue</button>
+<div id="myClubView">
+
+    <div id="viewHeader" class="row" style="margin: inherit">
+        <div class="tblHead">
+            <div class="col-md-12" style="padding: 5px 5px 5px 10px">
+                <span>Mein Verein - Einstellungen</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="clubNamePart" class="row" style="margin: inherit">
+        <div class="col-md-6" style="padding: 15px 5px 5px 10px">
+            <div>
+                <label>
+                    <span class="clubColor">Name des Vereins</span>
+                </label>
+
+            </div>
+            <div data-bind="component: { name: 'editableText', params: { text:'TUS Binzen 1958 e.V.' } }"></div>
+        </div>
+    </div>
+
 </div>
 
 <script>
-    require(['startUp/startUpViewData'], function(data) {
-        data.global.finishLoading();
+    require(['management/myClub/myClubViewModel'], function (viewModel) {
+        viewModel.initializeView();
     });
 </script>
