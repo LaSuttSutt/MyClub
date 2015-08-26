@@ -11,7 +11,7 @@ requirejs(['management/managementViewModel', 'common/common', 'authentication/au
 
         }, function() {
 
-            window.location = "/club/index.html";
+            window.location = "/myclub/index.html";
         });
     }
 );

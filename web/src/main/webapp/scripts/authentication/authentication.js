@@ -93,7 +93,7 @@ define(function (require) {
             api.logOut(tokenUserData.userId, tokenUserData.tokenId).then(
                 function() {
                     self.deleteStoredUserData();
-                    window.location = "/club/index.html";
+                    window.location = "/myclub/index.html";
                 }
             );
         },

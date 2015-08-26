@@ -9,14 +9,28 @@
     </div>
 
     <div id="clubNamePart" class="row" style="margin: inherit">
-        <div class="col-md-6" style="padding: 15px 5px 5px 10px">
+        <div class="col-md-5" style="padding: 15px 5px 5px 10px">
             <div>
                 <label>
                     <span class="clubColor">Name des Vereins</span>
                 </label>
-
             </div>
             <div data-bind="component: { name: 'editableText', params: { text:'TUS Binzen 1958 e.V.' } }"></div>
+        </div>
+    </div>
+
+    <div id="clubEmblemPart" class="row" style="margin: inherit">
+        <div class="col-md-5" style="padding: 10px 5px 5px 10px">
+            <div>
+                <label>
+                    <span class="clubColor">Vereinswappen</span>
+                </label>
+            </div>
+            <div style="margin-left: 13px; margin-top: 7px;">
+                <img class="img-responsive" src="/myclub/api/club/getEmblem"
+                     style="max-height: 150px; border: 1px solid lightgray; background-color: whitesmoke">
+            </div>
+            
         </div>
     </div>
 

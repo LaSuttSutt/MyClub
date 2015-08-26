@@ -11,7 +11,7 @@ define(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: '/club/api/authentication/check',
+                    url: '/myclub/api/authentication/check',
                     success: resolve,
                     error: reject,
                     data: {
@@ -27,7 +27,7 @@ define(function() {
                 $.ajax({
 
                     type: 'POST',
-                    url: '/club/api/authentication/logIn',
+                    url: '/myclub/api/authentication/logIn',
                     success: resolve,
                     data: {
                         userName: userName,
@@ -42,7 +42,7 @@ define(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: '/club/api/authentication/logOut',
+                    url: '/myclub/api/authentication/logOut',
                     success: resolve,
                     data: {
                         userId: userId,

@@ -17,7 +17,7 @@ define(function (require) {
                         {
                             text: ko.observable('Vereins-Mitglieder'),
                             dom: ko.observable('navMembers'),
-                            view: ko.observable('/club/views/management/members.html'),
+                            view: ko.observable('/myclub/views/management/members.html'),
                             visible: ko.observable(true)
                         }
                     ])
@@ -29,7 +29,7 @@ define(function (require) {
                         {
                             text: ko.observable('Mein Verein'),
                             dom: ko.observable('navMyClub'),
-                            view: ko.observable('/club/views/management/myClub.html'),
+                            view: ko.observable('/myclub/views/management/myClub.html'),
                             visible: ko.observable(true)
                         }
                     ])

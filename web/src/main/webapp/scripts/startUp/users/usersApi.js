@@ -14,7 +14,7 @@ define(function(require) {
 
                 $.ajax({
                     type: 'GET',
-                    url: '/club/api/user',
+                    url: '/myclub/api/user',
                     headers: common.getTokenHeader(),
                     success: resolve
                 });
@@ -26,7 +26,7 @@ define(function(require) {
 
                 $.ajax({
                     type: 'GET',
-                    url: '/club/api/user/roles',
+                    url: '/myclub/api/user/roles',
                     headers: common.getTokenHeader(),
                     success: resolve
                 })
@@ -40,7 +40,7 @@ define(function(require) {
 
                 $.ajax({
                     type: 'POST',
-                    url: '/club/api/user/validate',
+                    url: '/myclub/api/user/validate',
                     headers: common.getTokenHeader(),
                     success: resolve,
                     contentType: "application/json",
@@ -56,7 +56,7 @@ define(function(require) {
 
                 $.ajax({
                     type: 'GET',
-                    url: '/club/api/user/new',
+                    url: '/myclub/api/user/new',
                     headers: common.getTokenHeader(),
                     success: resolve
                 })
@@ -68,7 +68,7 @@ define(function(require) {
 
                 $.ajax({
                     type: 'POST',
-                    url: '/club/api/user',
+                    url: '/myclub/api/user',
                     headers: common.getTokenHeader(),
                     success: resolve,
                     contentType: "application/json",
@@ -82,7 +82,7 @@ define(function(require) {
 
                 $.ajax({
                     type: 'POST',
-                    url: '/club/api/user/update',
+                    url: '/myclub/api/user/update',
                     headers: common.getTokenHeader(),
                     success: resolve,
                     contentType: "application/json",
@@ -96,7 +96,7 @@ define(function(require) {
 
                 $.ajax({
                     type: 'DELETE',
-                    url: '/club/api/user/' + userId,
+                    url: '/myclub/api/user/' + userId,
                     headers: common.getTokenHeader(),
                     success: resolve
                 });

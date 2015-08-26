@@ -8,7 +8,7 @@ define(function(require) {
 
     return function(params) {
 
-        this.isIndexPage = (window.location.pathname == '/club/index.html' || window.location.pathname == '/club/');
+        this.isIndexPage = (window.location.pathname == '/myclub/index.html' || window.location.pathname == '/myclub/');
 
         this.authentication = mainData.authentication;
         this.global = mainData.global;

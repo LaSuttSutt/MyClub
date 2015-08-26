@@ -13,7 +13,7 @@ define(function(require) {
             this.data = mainData;
 
             this.navigateToManagement = function() {
-                logic.navigateToModule('/club/pages/management.html');
+                logic.navigateToModule('/myclub/pages/management.html');
             };
             this.navigateToCoach = function() {
 

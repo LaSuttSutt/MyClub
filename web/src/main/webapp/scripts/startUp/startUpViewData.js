@@ -53,7 +53,7 @@ define(function() {
                         {
                             text: ko.observable('Anmelden'),
                             dom: ko.observable('navLogIn'),
-                            view: ko.observable('/club/views/startUp/logIn.html'),
+                            view: ko.observable('/myclub/views/startUp/logIn.html'),
                             visible: ko.observable(false)
                         }
                     ])
@@ -71,7 +71,7 @@ define(function() {
                         {
                             text: ko.observable('Module'),
                             dom: ko.observable('navManagement'),
-                            view: ko.observable('/club/views/startUp/modules.html'),
+                            view: ko.observable('/myclub/views/startUp/modules.html'),
                             visible: ko.observable(true)
                         }
                     ])
@@ -83,7 +83,7 @@ define(function() {
                         {
                             text: ko.observable('Benutzer'),
                             dom: ko.observable('navUsers'),
-                            view: ko.observable('/club/views/startUp/users.html'),
+                            view: ko.observable('/myclub/views/startUp/users.html'),
                             visible: ko.observable(true)
                         }
                     ])
