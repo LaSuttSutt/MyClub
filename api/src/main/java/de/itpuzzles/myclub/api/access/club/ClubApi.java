@@ -3,12 +3,12 @@ package de.itpuzzles.myclub.api.access.club;
 import de.itpuzzles.myclub.api.authentication.HasRole;
 import de.itpuzzles.myclub.api.logic.club.ClubLogic;
 import de.itpuzzles.myclub.domainmodel.club.MyClubInfo;
+import de.itpuzzles.myclub.domainmodel.helper.ImageTransfer;
 import de.itpuzzles.myclub.domainmodel.users.User;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.io.IOException;
 
 @Path("/club")
 @Produces(MediaType.APPLICATION_JSON)
@@ -42,9 +42,17 @@ public class ClubApi {
     @GET
     @Path("/getEmblem")
     @Produces("image/png")
-    public byte[] getEmblem() throws IOException {
+    public byte[] getEmblem() {
 
         return clubLogic.getClubEmblem();
+    }
+
+    @POST
+    @Path("/saveEmblem")
+    @HasRole(User.UserRole.ClubManagement)
+    public void saveEmblem(ImageTransfer imageTransfer) {
+
+
     }
 
     //endregion

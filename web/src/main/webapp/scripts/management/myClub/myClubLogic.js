@@ -5,6 +5,7 @@ define(function(require) {
 
     var data = require('management/myClub/myClubViewData');
     var api = require('management/myClub/myClubApi');
+    var imageData = require('components/imageSelect/data');
 
     return {
 
@@ -15,6 +16,13 @@ define(function(require) {
         saveClubInfo: function() {
 
             api.saveClubInfo(data.getClubInfo());
+        },
+        saveEmblem: function() {
+
+            var imageTransfer = imageData.getImageTransfer();
+            api.saveEmblem(imageTransfer).then(function() {
+
+            });
         }
     };
 });

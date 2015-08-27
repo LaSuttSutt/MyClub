@@ -1,6 +1,6 @@
 <!-- Modal Dialog -->
 <div class="modal fade container" role="dialog"
-     data-bind="event: { 'hidden.bs.modal':onClose }, attr: { 'id': modalId }">
+     data-bind="event: { 'hidden.bs.modal':onClose, 'shown.bs.modal':onShow }, attr: { 'id': data.modalId }">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"
@@ -10,26 +10,30 @@
                         <img src="/myclub/api/club/getEmblem" style="width: 40px; height: 40px">
                     </div>
                     <div class="col-md-11" style="padding-left: 15px;">
-                        <h3 class="clubColor" data-bind="text: title" style="margin-top: 7px; margin-bottom: 0"></h3>
+                        <h3 class="clubColor" data-bind="text: data.title" style="margin-top: 7px; margin-bottom: 0"></h3>
                     </div>
                 </div>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-8" style="min-height: 300px; padding-right: 0">
-                        <div style="min-height: 300px; border: 1px solid gray; background-color: whitesmoke" align="center">
-                            <img id="emblem" src="" style="max-width: 381px; max-height: 298px" data-bind="attr: { 'src': source }">
+                        <div style="min-height: 300px; border: 1px solid gray; background-color: gray" align="center">
+                            <img id="emblem" src="" style="max-width: 381px; max-height: 298px; background-color: whitesmoke"
+                                 data-bind="attr: { 'src': data.source }">
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div style="min-height: 300px; border: 1px solid gray;">
-                            <div>
-                                <span class="small">Mit 'Bild öffnen' können Sie ihr eigenes Bild laden. Es wird automatisch in der Vorschau
-                                angezeigt. In der Vorschau können Sie den entsprechenden Bereich selektieren</span>
+                        <div style="min-height: 300px;">
+                            <div style="text-align: justify">
+                                <span class="small" style="text-align: justify">
+                                    Mit 'Bild öffnen' können Sie ihr eigenes Bild laden.
+                                    Dieses wird in der Vorschau angezeigt. In der Vorschau können
+                                    Sie einen Bereich markieren. Dieser wird dann als Emblem gespeichert.</span>
                             </div>
-                            <input id="fileRead" type="file" name="pic" accept="image/*" data-bind="event: { change: showImage }"
+                            <input id="fileRead" type="file" name="pic" accept="image/*" data-bind="event: { change: previewImage }"
                                    style="display: none">
-                            <button class="btn btn-default btn-sm" onclick="$('#fileRead').click(); return false;">
+                            <button class="btn btn-default btn-sm" onclick="$('#fileRead').click(); return false;"
+                                    style="margin-top: 10px">
                                 <span class="glyphicon glyphicon-folder-open"></span>
                                 <span style="margin-left: 5px">Bild öffnen...</span>
                             </button>
@@ -39,7 +43,7 @@
             </div>
             <div class="modal-footer"
                  style="background-color: whitesmoke; padding: 10px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
-                <button class="btn btn-danger btn-sm" data-dismiss="modal" data-bind="attr: { 'id': btnCloseId }">
+                <button class="btn btn-danger btn-sm" data-dismiss="modal" data-bind="attr: { 'id': data.btnCloseId }">
                     <span>Abbrechen</span>
                 </button>
                 <button class="btn btn-success btn-sm" data-bind="click: onSave">

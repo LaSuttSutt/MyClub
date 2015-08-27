@@ -31,6 +31,20 @@ define(function(require) {
                     data: JSON.stringify(clubInfo)
                 })
             });
+        },
+        saveEmblem: function(imageTransfer) {
+
+            return new Promise(function(resolve) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/myclub/api/club/saveEmblem',
+                    headers: common.getTokenHeader(),
+                    success: resolve,
+                    contentType: 'application/json',
+                    data: JSON.stringify(imageTransfer)
+                });
+            });
         }
     };
 });

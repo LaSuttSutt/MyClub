@@ -13,6 +13,7 @@ define(function(require) {
 
             this.data = data;
             this.saveClubInfo = logic.saveClubInfo;
+            this.saveEmblem = logic.saveEmblem;
         },
         initializeView: function() {
 

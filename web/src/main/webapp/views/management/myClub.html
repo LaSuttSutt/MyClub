@@ -32,14 +32,16 @@
             </div>
             <div class="btn-group btn-group-sm" style="margin-left: 13px; margin-top: 5px">
                 <button class="btn btn-default" style="min-width: 75px"
-                        data-toggle="modal" data-target="#imageSelectDialog">ändern</button>
+                        data-toggle="modal" data-target="#imageSelectDialog">ändern
+                </button>
                 <button class="btn btn-default" style="min-width: 75px">löschen</button>
             </div>
         </div>
     </div>
 
     <!-- ImageSelect Dialog -->
-    <div data-bind="component: { name: 'imageSelect', params: { modalId: 'imageSelectDialog', title: 'Vereins-Emblem' } }"></div>
+    <div data-bind="component: { name: 'imageSelect', params:
+            { modalId: 'imageSelectDialog', title: 'Vereins-Emblem', ratio:'1:1', onSave: saveEmblem } }"></div>
 </div>
 
 <script>
