@@ -1,0 +1,52 @@
+<!-- Modal Dialog -->
+<div class="modal fade container" role="dialog"
+     data-bind="event: { 'hidden.bs.modal':onClose }, attr: { 'id': modalId }">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"
+                 style="padding: 5px; background-color: whitesmoke; border-top-left-radius: 5px; border-top-right-radius: 5px;">
+                <div class="row">
+                    <div class="col-md-1">
+                        <img src="/myclub/api/club/getEmblem" style="width: 40px; height: 40px">
+                    </div>
+                    <div class="col-md-11" style="padding-left: 15px;">
+                        <h3 class="clubColor" data-bind="text: title" style="margin-top: 7px; margin-bottom: 0"></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8" style="min-height: 300px; padding-right: 0">
+                        <div style="min-height: 300px; border: 1px solid gray; background-color: whitesmoke" align="center">
+                            <img id="emblem" src="" style="max-width: 381px; max-height: 298px" data-bind="attr: { 'src': source }">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div style="min-height: 300px; border: 1px solid gray;">
+                            <div>
+                                <span class="small">Mit 'Bild öffnen' können Sie ihr eigenes Bild laden. Es wird automatisch in der Vorschau
+                                angezeigt. In der Vorschau können Sie den entsprechenden Bereich selektieren</span>
+                            </div>
+                            <input id="fileRead" type="file" name="pic" accept="image/*" data-bind="event: { change: showImage }"
+                                   style="display: none">
+                            <button class="btn btn-default btn-sm" onclick="$('#fileRead').click(); return false;">
+                                <span class="glyphicon glyphicon-folder-open"></span>
+                                <span style="margin-left: 5px">Bild öffnen...</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"
+                 style="background-color: whitesmoke; padding: 10px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+                <button class="btn btn-danger btn-sm" data-dismiss="modal" data-bind="attr: { 'id': btnCloseId }">
+                    <span>Abbrechen</span>
+                </button>
+                <button class="btn btn-success btn-sm" data-bind="click: onSave">
+                    <span>Speichern</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

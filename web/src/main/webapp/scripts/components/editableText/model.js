@@ -7,8 +7,8 @@ define(function() {
 
         var self = this;
 
-        this.text = ko.observable(params.text);
-        this.tmpText = ko.observable(params.text);
+        this.text = params.text;
+        this.tmpText = ko.observable(params.text());
         this.editMode = ko.observable(false);
         this.textHover = ko.observable(false);
         this.inputFocus = ko.observable(false);
@@ -24,6 +24,7 @@ define(function() {
         };
         this.commitEditMode = function() {
             self.editMode(false);
+            params.commitEditMode();
         };
         this.startHover = function() {
             self.textHover(true);

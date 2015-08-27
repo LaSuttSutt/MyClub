@@ -2,11 +2,12 @@
  Startup-Module for the application
  */
 requirejs(['startUp/startUpViewModel', 'startUp/startUpLogic' , 'common/common', 'authentication/authentication',
-        'common/componentLoader'],
-    function(model, logic, common, authentication) {
+        'management/myClub/myClubLogic', 'common/componentLoader'],
+    function(model, logic, common, authentication, clubLogic) {
 
         authentication.checkAuthentication().then(function() {
 
+            clubLogic.loadClubInfo();
             common.handleAjaxErros();
             common.checkStyleColor();
             logic.setModulesMenu();
@@ -14,6 +15,7 @@ requirejs(['startUp/startUpViewModel', 'startUp/startUpLogic' , 'common/common',
 
         }, function() {
 
+            clubLogic.loadClubInfo();
             common.handleAjaxErros();
             common.checkStyleColor();
             logic.setLogInMenu();

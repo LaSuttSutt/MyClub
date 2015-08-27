@@ -15,7 +15,7 @@
                     <span class="clubColor">Name des Vereins</span>
                 </label>
             </div>
-            <div data-bind="component: { name: 'editableText', params: { text:'TUS Binzen 1958 e.V.' } }"></div>
+            <div data-bind="component: { name: 'editableText', params: { text: data.clubName, commitEditMode: saveClubInfo } }"></div>
         </div>
     </div>
 
@@ -27,13 +27,19 @@
                 </label>
             </div>
             <div style="margin-left: 13px; margin-top: 7px;">
-                <img class="img-responsive" src="/myclub/api/club/getEmblem"
-                     style="max-height: 150px; border: 1px solid lightgray; background-color: whitesmoke">
+                <img class="img-rounded small" src="/myclub/api/club/getEmblem" height="150" width="150"
+                     style="border: 1px solid lightgray; background-color: whitesmoke">
             </div>
-            
+            <div class="btn-group btn-group-sm" style="margin-left: 13px; margin-top: 5px">
+                <button class="btn btn-default" style="min-width: 75px"
+                        data-toggle="modal" data-target="#imageSelectDialog">ändern</button>
+                <button class="btn btn-default" style="min-width: 75px">löschen</button>
+            </div>
         </div>
     </div>
 
+    <!-- ImageSelect Dialog -->
+    <div data-bind="component: { name: 'imageSelect', params: { modalId: 'imageSelectDialog', title: 'Vereins-Emblem' } }"></div>
 </div>
 
 <script>

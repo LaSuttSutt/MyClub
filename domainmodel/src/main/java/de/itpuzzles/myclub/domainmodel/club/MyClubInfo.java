@@ -14,10 +14,21 @@ public class MyClubInfo {
 
     //region #Constructor
 
+    public MyClubInfo() {}
+
     public MyClubInfo(MyClub club) {
 
         this.setId(club.getId());
         this.setClubName(club.getClubName());
+    }
+
+    //endregion
+
+    //region #Public Methods
+
+    public void wrapData(MyClub myClub) {
+
+        myClub.setClubName(this.getClubName());
     }
 
     //endregion

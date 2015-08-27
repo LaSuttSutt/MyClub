@@ -4,6 +4,7 @@
 define(function(require) {
 
     var data = require('management/myClub/myClubViewData');
+    var logic = require('management/myClub/myClubLogic');
     var mainData = require('startUp/startUpViewData');
 
     var self = {
@@ -11,6 +12,7 @@ define(function(require) {
         viewModel: function() {
 
             this.data = data;
+            this.saveClubInfo = logic.saveClubInfo;
         },
         initializeView: function() {
 

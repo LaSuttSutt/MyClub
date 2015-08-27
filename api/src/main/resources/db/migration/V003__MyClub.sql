@@ -1,5 +1,0 @@
-CREATE TABLE `MyClub` (
-  `Id` CHAR(36) NOT NULL,
-  `ClubName` VARCHAR(250) NOT NULL,
-  `Emblem` LONGBLOB NULL,
-  PRIMARY KEY (`Id`));

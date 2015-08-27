@@ -1,18 +1,14 @@
 package de.itpuzzles.myclub.api.access.club;
 
+import de.itpuzzles.myclub.api.authentication.HasRole;
 import de.itpuzzles.myclub.api.logic.club.ClubLogic;
 import de.itpuzzles.myclub.domainmodel.club.MyClubInfo;
+import de.itpuzzles.myclub.domainmodel.users.User;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
 
 @Path("/club")
 @Produces(MediaType.APPLICATION_JSON)
@@ -35,29 +31,20 @@ public class ClubApi {
         return clubLogic.getClubInfo();
     }
 
+    @POST
+    @Path("/")
+    @HasRole(User.UserRole.ClubManagement)
+    public void saveClubInfo(MyClubInfo info) {
+
+        clubLogic.saveClubInfo(info);
+    }
+
     @GET
     @Path("/getEmblem")
-    @Produces("image/jpeg")
+    @Produces("image/png")
     public byte[] getEmblem() throws IOException {
 
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL url = classLoader.getResource("files/EmblemDefault.png");
-        if (url == null)
-            return null;
-
-        String loadedFileString = url.getFile();
-        if (loadedFileString == null)
-            return null;
-
-        File file = new File(loadedFileString);
-
-        byte[] bFile = new byte[(int) file.length()];
-
-        FileInputStream fileInputStream = new FileInputStream(file);
-        fileInputStream.read(bFile);
-        fileInputStream.close();
-
-        return bFile;
+        return clubLogic.getClubEmblem();
     }
 
     //endregion

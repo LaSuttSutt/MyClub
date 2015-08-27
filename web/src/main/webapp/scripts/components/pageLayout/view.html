@@ -27,8 +27,9 @@
         <div id="pageHeader">
 
             <div class="row">
-                <div id="clubName" class="col-md-8">
-                    <h3 class="clubColor" style="margin-top: 5px; margin-bottom: 0">Tus Binzen 1956 e.V.</h3>
+                <div id="clubName" class="col-md-8" style="min-height: 31px">
+                    <h3 class="clubColor" style="margin-top: 5px; margin-bottom: 0"
+                            data-bind="text: club.clubName"></h3>
                 </div>
                 <div id="userInfo" class="col-md-4" align="right" data-bind="visible: authentication.loggedIn">
                     <div class="btn-group">
