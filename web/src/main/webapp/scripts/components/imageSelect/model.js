@@ -16,6 +16,8 @@ define(function(require) {
             data.imageAreaSelect.setOptions( { hide: true } );
         };
         this.onShow = logic.initialize;
-        this.onSave = params.onSave;
+        this.onSave = function() {
+            logic.onSave(params.onSave);
+        };
     };
 });

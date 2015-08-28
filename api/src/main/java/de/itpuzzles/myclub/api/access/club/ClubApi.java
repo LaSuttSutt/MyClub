@@ -52,7 +52,7 @@ public class ClubApi {
     @HasRole(User.UserRole.ClubManagement)
     public void saveEmblem(ImageTransfer imageTransfer) {
 
-
+        clubLogic.saveClubEmblem(imageTransfer);
     }
 
     //endregion

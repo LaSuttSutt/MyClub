@@ -8,9 +8,9 @@ define(function() {
         imageAreaSelect: {},
         modalId: ko.observable(),
         title: ko.observable(),
-        btnCloseId: 'btnCloseSelectImageDialog',
         source: ko.observable(''),
         ratio: ko.observable(),
+        validationInfo: ko.observable(''),
         selection: undefined,
         selectedImage: undefined,
         selectedImageArray: undefined,
@@ -30,6 +30,14 @@ define(function() {
                 cutHeight: self.selection.height,
                 clientWidth: self.selectedImage.clientWidth,
                 clientHeight: self.selectedImage.clientHeight
+            };
+        },
+        setSelection: function(x1, y1, x2, y2) {
+            self.selection = {
+                x1: x1,
+                y1: y1,
+                width: x2 - x1,
+                height: y2 - y1
             };
         }
     };

@@ -25,17 +25,22 @@ define(function(require) {
 
             if (selectionLength > 75) {
                 selectionLength -= 40;
-                location += 20;
+                location += 40;
             }
 
+            data.selectedImage = dom;
+            data.setSelection(location, location, selectionLength, selectionLength);
             data.imageAreaSelect.setOptions( { x1:location, y1:location, x2:selectionLength, y2:selectionLength } );
         },
         initialize: function() {
+
+            data.selection = undefined;
 
             data.imageAreaSelect = $('#emblem').imgAreaSelect({
                 handles: true,
                 aspectRatio: data.ratio(),
                 instance: true,
+
                 onSelectEnd: function (img, selection) {
                     data.selection = selection;
                     data.selectedImage = img;
@@ -64,6 +69,19 @@ define(function(require) {
                 };
                 fileReader.readAsBinaryString(input.files[0]);
             }
+        },
+        onSave: function(save) {
+
+            if (data.selection == undefined || data.selection.width == 0 || data.selection.height == 0) {
+                data.validationInfo('Es wurde nichts ausgewählt. Entweder ist kein Bild geladen, oder auf dem Bild wurde keine Selektion gesetzt.');
+                return;
+            }
+
+            data.validationInfo('');
+            save();
+
+            // Close Dialog
+            $('#btnCloseImageSelect').click();
         }
     };
 

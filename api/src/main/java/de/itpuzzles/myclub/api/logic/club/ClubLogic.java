@@ -3,11 +3,14 @@ package de.itpuzzles.myclub.api.logic.club;
 import de.itpuzzles.myclub.api.dataaccess.IDataAccessManager;
 import de.itpuzzles.myclub.domainmodel.club.MyClub;
 import de.itpuzzles.myclub.domainmodel.club.MyClubInfo;
+import de.itpuzzles.myclub.domainmodel.helper.ImageTransfer;
 
 import javax.ejb.Stateless;
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
-import java.io.File;
-import java.io.FileInputStream;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.URL;
 import java.util.List;
 
@@ -55,6 +58,17 @@ public class ClubLogic {
         return emblem;
     }
 
+    public void saveClubEmblem(ImageTransfer imageTransfer) {
+
+        List<MyClub> clubs = dataAccessManager.getAllEntities(MyClub.class);
+        if (clubs == null || clubs.size() != 1)
+            return;
+
+        MyClub club = clubs.get(0);
+        club.setEmblem(this.cutImage(imageTransfer));
+        dataAccessManager.update(club);
+    }
+
     //endregion
 
     //region #Private Methods
@@ -89,6 +103,40 @@ public class ClubLogic {
 
             return null;
         }
+    }
+
+    private byte[] cutImage(ImageTransfer imageTransfer) {
+
+        byte[] result = null;
+
+        try {
+            InputStream in = new ByteArrayInputStream(imageTransfer.getImage());
+            BufferedImage bImageFromConvert = ImageIO.read(in);
+            in.close();
+
+            Image scaledImage = bImageFromConvert.getScaledInstance
+                    (imageTransfer.getClientWidth(), imageTransfer.getClientHeight(), Image.SCALE_AREA_AVERAGING);
+
+            BufferedImage bufferedThumbnail = new BufferedImage
+                    (imageTransfer.getCutWidth(), imageTransfer.getCutHeight(), BufferedImage.TYPE_INT_ARGB);
+
+            bufferedThumbnail.getGraphics().drawImage(scaledImage, 0, 0,
+                    imageTransfer.getCutWidth(), imageTransfer.getCutHeight(),
+                    imageTransfer.getCutLeft(), imageTransfer.getCutTop(),
+                    imageTransfer.getCutWidth() + imageTransfer.getCutLeft(),
+                    imageTransfer.getCutTop() + imageTransfer.getCutHeight(), null);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(bufferedThumbnail, "png", baos);
+            baos.flush();
+            result = baos.toByteArray();
+            baos.close();
+        }
+        catch(Exception ex) {
+            return result;
+        }
+
+        return result;
     }
 
     //endregion
